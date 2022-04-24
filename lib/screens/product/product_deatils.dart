@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
 
 class ProductDeatils extends StatefulWidget {
@@ -10,24 +11,30 @@ class ProductDeatils extends StatefulWidget {
   final String productIamge;
   final int productPrice;
 
-  ProductDeatils({this.productId , this.productName , this.productDescription , this.productIamge, this.productPrice});
+  ProductDeatils(
+      {this.productId,
+      this.productName,
+      this.productDescription,
+      this.productIamge,
+      this.productPrice});
 
   @override
   State<ProductDeatils> createState() => _ProductDeatilsState();
 }
 
 class _ProductDeatilsState extends State<ProductDeatils> {
-
   @override
   Widget build(BuildContext context) {
-   final args = ModalRoute.of(context).settings.arguments as ProductDeatils;
+    final args = ModalRoute.of(context).settings.arguments as ProductDeatils;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
           ListView(
             children: [
-              DeatilsImageWidget(image: args.productIamge,),
+              DeatilsImageWidget(
+                image: args.productIamge,
+              ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
@@ -94,33 +101,39 @@ class _ProductDeatilsState extends State<ProductDeatils> {
             Expanded(
               child: Text(""),
             ),
-            Container(
-              padding: EdgeInsets.only(top:15.0 , left: 25.0 , right: 25.0, bottom: 15.0),
-              decoration: BoxDecoration(
-                color: Colors.blueGrey.shade50,
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    child: Icon(
-                      Icons.shopping_bag,
-                      color: primaryColor,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Container(
-                    child: Text(
-                      'Add to cart',
-                      style: TextStyle(
-                        fontSize: 16.0,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ShoppingScreen.id);
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: 15.0, left: 25.0, right: 25.0, bottom: 15.0),
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey.shade50,
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      child: Icon(
+                        Icons.shopping_bag,
                         color: primaryColor,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Container(
+                      child: Text(
+                        'Add to cart',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           ],
@@ -139,7 +152,7 @@ class DeatilsImageWidget extends StatefulWidget {
 }
 
 class _DeatilsImageWidgetState extends State<DeatilsImageWidget> {
-  int counter=0;
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -192,7 +205,8 @@ class _DeatilsImageWidgetState extends State<DeatilsImageWidget> {
                   onPressed: () {
                     setState(() {
                       counter--;
-                    });},
+                    });
+                  },
                 ),
               ),
               Padding(
@@ -227,7 +241,7 @@ class _DeatilsImageWidgetState extends State<DeatilsImageWidget> {
                     setState(() {
                       counter++;
                     });
-                    },
+                  },
                 ),
               ),
             ],
@@ -263,7 +277,9 @@ class DettilsHeader extends StatelessWidget {
                 Icons.arrow_back_ios,
                 color: primaryColor,
               ),
-              onPressed: () {Navigator.pop(context);},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
           ),
           Expanded(
@@ -287,7 +303,9 @@ class DettilsHeader extends StatelessWidget {
                 Icons.shopping_cart,
                 color: primaryColor,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, ShoppingScreen.id);
+              },
             ),
           ),
         ],

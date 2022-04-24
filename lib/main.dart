@@ -5,6 +5,7 @@ import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/screens/getStart_screen.dart';
 import 'package:restaurant/screens/home/home_screen.dart';
 import 'package:restaurant/screens/product/product_deatils.dart';
+import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/screens/splash_screen.dart';
 import 'package:restaurant/screens/tips_screen.dart';
 import 'package:restaurant/screens/user_page/drawer_screen.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.id : (context) => HomeScreen(),
         DrawerScreen.id : (context) => DrawerScreen(),
         ProductDeatils.id : (context) => ProductDeatils(),
+        ShoppingScreen.id : (context) => ShoppingScreen(),
                 
       },
     );
