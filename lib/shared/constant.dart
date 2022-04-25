@@ -102,3 +102,55 @@ var tipsarr = [
     },
     
   ];
+
+  var shoppingProduct = [
+  {
+    "productId": "1",
+    "productName": "juice",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+  {
+    "productId": "2",
+    "productName": "burger",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+  {
+    "productId": "3",
+    "productName": "Pizza",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+  {
+    "productId": "4",
+    "productName": "happy meal",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+  {
+    "productId": "5",
+    "productName": "fish",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+  {
+    "productId": "5",
+    "productName": "fish",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+  {
+    "productId": "5",
+    "productName": "fish",
+    "productPrice": 100,
+    "productQuantity": "2",
+    "productImage": "images/product/burger.jpg",
+  },
+];
