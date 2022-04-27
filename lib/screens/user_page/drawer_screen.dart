@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/screens/accounts/change_password.dart';
+import 'package:restaurant/screens/accounts/my_profile.dart';
 import 'package:restaurant/shared/colors.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -44,13 +46,61 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 color: Colors.grey.shade100,
               ),
             ),
-            DrawerItem(titleText: "Profile", drawerIcon: Icons.person,),
-            DrawerItem(titleText: "Order History", drawerIcon: Icons.history,),
-            DrawerItem(titleText: "Delivery Address", drawerIcon: Icons.home,),
-            DrawerItem(titleText: "Favorite", drawerIcon: Icons.favorite,),
-            DrawerItem(titleText: "About Us", drawerIcon: Icons.group_sharp,),
-            DrawerItem(titleText: "Support Center", drawerIcon: Icons.call,),
-            
+            ExpansionTile(
+              tilePadding: EdgeInsets.only(left:20.0 , right: 22.0),
+
+              leading: Icon(
+                Icons.person,
+                color: primaryColor,
+              ),
+              title: Text(
+                "Profile",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black,
+                ),
+              ),
+              children: [
+                DrawerItem(
+                  titleText: "Edit Profile",
+                  drawerIcon: Icons.settings,
+                  onTapFunction: () {
+                    Navigator.pushNamed(context, MyProfileScreen.id);
+                  },
+                ),
+                DrawerItem(
+                  titleText: "Edit Password",
+                  dividerColor: Colors.white,
+                  drawerIcon: Icons.lock_open,
+                  onTapFunction: () {
+                    Navigator.pushNamed(context, ChangePasswordScreen.id);
+                  },
+                ),
+              ],
+            ),
+            Divider(
+            color: Colors.grey.shade500,
+          ),
+            DrawerItem(
+              titleText: "Order History",
+              drawerIcon: Icons.history,
+            ),
+            DrawerItem(
+              titleText: "Delivery Address",
+              drawerIcon: Icons.home,
+            ),
+            DrawerItem(
+              titleText: "Favorite",
+              drawerIcon: Icons.favorite,
+            ),
+            DrawerItem(
+              titleText: "About Us",
+              drawerIcon: Icons.message,
+            ),
+            DrawerItem(
+              titleText: "Support Center",
+              drawerIcon: Icons.call,
+            ),
           ],
         ),
       ),
@@ -59,20 +109,21 @@ class _DrawerScreenState extends State<DrawerScreen> {
 }
 
 class DrawerItem extends StatelessWidget {
-  
   final String titleText;
   final IconData drawerIcon;
+  final Function onTapFunction;
+  Color dividerColor = Colors.grey.shade500;
 
-  DrawerItem({this.titleText , this.drawerIcon});
+  DrawerItem({this.titleText, this.drawerIcon, this.onTapFunction , this.dividerColor});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left:8.0 , right: 10.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 10.0),
       child: Column(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: onTapFunction,
             child: ListTile(
               title: Text(
                 titleText,
@@ -87,12 +138,15 @@ class DrawerItem extends StatelessWidget {
               ),
               trailing: Icon(
                 Icons.arrow_forward_ios,
-                color: Colors.black,
-                size: 18.0,
+                color: Colors.black54,
+                size: 15.0,
               ),
             ),
           ),
-          Divider(color: Colors.grey.shade500,),
+          Divider(
+            color: dividerColor,
+          ),
+
         ],
       ),
     );

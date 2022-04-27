@@ -5,10 +5,20 @@ class DefaultFormField extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final Function validatorFunction;
-  final bool obscureValue ;
+  final bool obscureValue;
+  final bool isPasswordTextFeild;
+  final Function suffixIconFunction;
+  bool showPassword = false;
 
   DefaultFormField(
-      {this.controller, this.hintText, this.inputType, this.validatorFunction , this.obscureValue});
+      {this.controller,
+      this.hintText,
+      this.inputType,
+      this.validatorFunction,
+      this.obscureValue,
+      this.isPasswordTextFeild,
+      this.showPassword,
+      this.suffixIconFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +30,19 @@ class DefaultFormField extends StatelessWidget {
         borderRadius: BorderRadius.circular(25.0),
       ),
       child: TextFormField(
-        obscureText: obscureValue??false,
+        obscureText: obscureValue ?? false ? showPassword : false,
         controller: controller,
         keyboardType: inputType,
         decoration: InputDecoration(
+          suffixIcon: isPasswordTextFeild
+              ? IconButton(
+                  onPressed: suffixIconFunction,
+                  icon: Icon(
+                    showPassword ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.grey,
+                  ),
+                )
+              : null,
           hintText: hintText,
           border: InputBorder.none,
         ),

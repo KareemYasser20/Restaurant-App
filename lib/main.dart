@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/screens/accounts/change_password.dart';
 import 'package:restaurant/screens/accounts/forgetpassword.dart';
 import 'package:restaurant/screens/accounts/login.dart';
+import 'package:restaurant/screens/accounts/my_profile.dart';
 import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/screens/getStart_screen.dart';
 import 'package:restaurant/screens/home/home_screen.dart';
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
         DrawerScreen.id : (context) => DrawerScreen(),
         ProductDeatils.id : (context) => ProductDeatils(),
         ShoppingScreen.id : (context) => ShoppingScreen(),
+        MyProfileScreen.id : (context) => MyProfileScreen(),
+        ChangePasswordScreen.id : (context) => ChangePasswordScreen(),
                 
       },
     );

@@ -16,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController;
   TextEditingController passwordController;
+  bool showPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,90 +40,101 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             Expanded(
               child: Form(
-                child: ListView(
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(left: 5.0),
-                      margin: EdgeInsets.only(bottom: 25.0),
-                      child: Text(
-                        'Log in to your account',
-                        style: TextStyle(
-                          color: primaryColor,
-                          fontSize: 25.0,
-                          fontWeight: FontWeight.bold,
+                child: GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: ListView(
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(left: 5.0),
+                        margin: EdgeInsets.only(bottom: 25.0),
+                        child: Text(
+                          'Log in to your account',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 25.0,
-                    ),
-                    DefaultFormField(
-                      controller: emailController,
-                      hintText: 'Email',
-                      inputType: TextInputType.emailAddress,
-                      validatorFunction: (String value) {
-                        if (value.isEmpty ||
-                            value.indexOf(".") == -1 ||
-                            value.indexOf("@") == -1) {
-                          return 'Please enter valid Email';
-                        }
-                        return null;
-                      },
-                    ),
-                    
-                        DefaultFormField(
-                          controller: passwordController,
-                          hintText: 'Password',
-                          obscureValue: true,
-                          inputType: TextInputType.text,
-                          validatorFunction: (String value) {
-                            if (value.isEmpty || value.length < 4) {
-                              return 'Please enter valid password more than 4 character';
-                            }
-                            return null;
+                      SizedBox(
+                        height: 25.0,
+                      ),
+                      DefaultFormField(
+                        controller: emailController,
+                        hintText: 'Email',
+                        inputType: TextInputType.emailAddress,
+                        isPasswordTextFeild: false,
+                        validatorFunction: (String value) {
+                          if (value.isEmpty ||
+                              value.indexOf(".") == -1 ||
+                              value.indexOf("@") == -1) {
+                            return 'Please enter valid Email';
+                          }
+                          return null;
+                        },
+                      ),
+                      DefaultFormField(
+                        controller: passwordController,
+                        hintText: 'Password',
+                        obscureValue: true,
+                        isPasswordTextFeild: true,
+                        showPassword: showPassword,
+                        suffixIconFunction: () {
+                          setState(() {
+                            showPassword = !showPassword;
+                          });
+                        },
+                        inputType: TextInputType.text,
+                        validatorFunction: (String value) {
+                          if (value.isEmpty || value.length < 4) {
+                            return 'Please enter valid password more than 4 character';
+                          }
+                          return null;
+                        },
+                      ),
+                      Container(
+                        alignment: Alignment.bottomRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, ForgetPasswordScreen.id);
                           },
-                        ),
-                        
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, ForgetPasswordScreen.id);
-                            },
-                            child: Text(
-                              'Forget Password?',
-                              style: TextStyle(
-                                color: primaryColor,
-                              ),
+                          child: Text(
+                            'Forget Password?',
+                            style: TextStyle(
+                              color: primaryColor,
                             ),
                           ),
-                    ),
-                      
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, HomeScreen.id);
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width,
-                        height: 50.0,
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(25.0),
                         ),
-                        child: Text(
-                          'Log in',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22.0,
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, HomeScreen.id);
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Text(
+                            'Log in',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22.0,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
