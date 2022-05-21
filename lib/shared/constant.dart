@@ -19,7 +19,7 @@ var tipsarr = [
  var categoryList = [
     {
       "catId": "1",
-      "catName": "category 1",
+      "catName": "Seafoods",
       "catImage": "images/category/cat1.png"
     },
     {
@@ -69,7 +69,52 @@ var tipsarr = [
     },
   ];
   
-
+var subCategoryList = [
+    {
+      "subCategoryId": "1",
+      "subCategoryName": "Tuna",
+      "subCategoryImage": "images/product/burger.jpg",
+      "subCategoryCount": "10",
+    },
+    {
+      "subCategoryId": "2",
+      "subCategoryName": "Striped bass",
+      "subCategoryImage": "images/category/cat2.png",
+      "subCategoryCount": "10",
+    },
+    {
+      "subCategoryId": "3",
+      "subCategoryName": "Perch",
+      "subCategoryImage": "images/category/cat3.png",
+      "subCategoryCount": "5",
+    },
+    {
+      "subCategoryId": "4",
+      "subCategoryName": "Salmon",
+      "subCategoryImage": "images/category/cat4.png",
+      "subCategoryCount": "5",
+    },
+    {
+      "subCategoryId": "5",
+      "subCategoryName": "Cod",
+      "subCategoryImage": "images/category/cat5.png",
+      "subCategoryCount": "5",
+    },
+    {
+      "subCategoryId": "6",
+      "subCategoryName": "Sardines",
+      "subCategoryImage": "images/category/cat6.png",
+      "subCategoryCount": "5",
+    },
+    {
+      "subCategoryId": "7",
+      "subCategoryName": "Herring",
+      "subCategoryImage": "images/category/cat7.png",
+      "subCategoryCount": "5",
+    },
+  ];
+  
+  
   var productList = [
 
     {
@@ -77,28 +122,37 @@ var tipsarr = [
       "productName": "Burger",
       "productDescription": "Burger Sandwich with fries and extra cheese and cola drink.",
       "productImage": "images/product/burger.jpg",
-      "ProductPrice" : 10
+      "ProductPrice" : 10,
+      "ProductOffer" : "1",
+      "ProductRate" : "2.0",
+
     },
     {
       "productId": "2",
       "productName": "Fish",
       "productDescription": "Food Descrption and price",
       "productImage": "images/product/fish.jpg",
-      "ProductPrice" : 15
+      "ProductPrice" : 15,
+      "ProductOffer" : "1",
+      "ProductRate" : "3.0",
     },
     {
       "productId": "3",
       "productName": "Fresh Juice",
       "productDescription": "Food Descrption and price ",
       "productImage": "images/product/fresh_juice.jpg",
-      "ProductPrice" : 20
+      "ProductPrice" : 20,
+      "ProductOffer" : "0",
+      "ProductRate" : "5.0",
     },
     {
       "productId": "4",
       "productName": "Pizza",
       "productDescription": "Food Descrption and price",
       "productImage": "images/product/pizza.jpg",
-      "ProductPrice" : 25
+      "ProductPrice" : 25,
+      "ProductOffer" : "0",
+      "ProductRate" : "1.0",
     },
     
   ];

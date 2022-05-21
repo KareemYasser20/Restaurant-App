@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/change_password.dart';
 import 'package:restaurant/screens/accounts/my_profile.dart';
+import 'package:restaurant/screens/favorite/favorite_screen.dart';
+import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/shared/colors.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -92,6 +94,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
             DrawerItem(
               titleText: "Favorite",
               drawerIcon: Icons.favorite,
+              onTapFunction: (){Navigator.pushNamed(context, FavoriteScreen.id);},
+            ),
+             DrawerItem(
+              titleText: "Track orders",
+              drawerIcon: Icons.drive_eta,
+              onTapFunction: (){Navigator.pushNamed(context, TrackingOrder.id);},
             ),
             DrawerItem(
               titleText: "About Us",

@@ -4,9 +4,12 @@ import 'package:restaurant/screens/accounts/forgetpassword.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/screens/accounts/my_profile.dart';
 import 'package:restaurant/screens/accounts/register.dart';
+import 'package:restaurant/screens/favorite/favorite_screen.dart';
 import 'package:restaurant/screens/getStart_screen.dart';
 import 'package:restaurant/screens/home/home_screen.dart';
+import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/screens/product/product_deatils.dart';
+import 'package:restaurant/screens/product/sub_category.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/screens/splash_screen.dart';
 import 'package:restaurant/screens/tips_screen.dart';
@@ -34,6 +37,9 @@ class MyApp extends StatelessWidget {
         ShoppingScreen.id : (context) => ShoppingScreen(),
         MyProfileScreen.id : (context) => MyProfileScreen(),
         ChangePasswordScreen.id : (context) => ChangePasswordScreen(),
+        SubCategory.id : (context) => SubCategory(),
+        FavoriteScreen.id : (context) => FavoriteScreen(),
+        TrackingOrder.id : (context) => TrackingOrder(),
                 
       },
     );

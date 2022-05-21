@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/product/product_deatils.dart';
+import 'package:restaurant/screens/product/sub_category.dart';
 import 'package:restaurant/screens/user_page/drawer_screen.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/constant.dart';
@@ -102,10 +103,21 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: categoryList.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return SingleCategory(
-                  catId: categoryList[index]["catId"],
-                  catName: categoryList[index]["catName"],
-                  catImage: categoryList[index]["catImage"],
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SubCategory(
+                                  categoryId: categoryList[index]["catId"],
+                                  categoryName: categoryList[index]["catName"],
+                                )));
+                  },
+                  child: SingleCategory(
+                    catId: categoryList[index]["catId"],
+                    catName: categoryList[index]["catName"],
+                    catImage: categoryList[index]["catImage"],
+                  ),
                 );
               },
             ),
@@ -117,22 +129,22 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: productList.length,
               itemBuilder: (context, index) {
                 return SingleProduct(
-                  productId: productList[index]["productId"],
-                  productName: productList[index]["productName"],
-                  productDescription: productList[index]["productDescription"],
-                  productImage: productList[index]["productImage"],
-                  onTapFunction: () { Navigator.pushNamed(
-                    context,
-                     ProductDeatils.id,
-                     arguments: ProductDeatils(
-                       productId: productList[index]["productId"],
-                       productName: productList[index]["productName"],
-                       productDescription: productList[index]["productDescription"],
-                       productIamge: productList[index]["productImage"],
-                       productPrice: productList[index]["ProductPrice"],
-                     )
-                     );}
-                );
+                    productId: productList[index]["productId"],
+                    productName: productList[index]["productName"],
+                    productDescription: productList[index]
+                        ["productDescription"],
+                    productImage: productList[index]["productImage"],
+                    onTapFunction: () {
+                      Navigator.pushNamed(context, ProductDeatils.id,
+                          arguments: ProductDeatils(
+                            productId: productList[index]["productId"],
+                            productName: productList[index]["productName"],
+                            productDescription: productList[index]
+                                ["productDescription"],
+                            productIamge: productList[index]["productImage"],
+                            productPrice: productList[index]["ProductPrice"],
+                          ));
+                    });
               },
             ),
           ),
