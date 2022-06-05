@@ -5,7 +5,7 @@ import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_question.dart';
-import 'package:restaurant/shared/widgets/default_form_field.dart';
+import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';

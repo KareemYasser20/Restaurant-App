@@ -5,7 +5,7 @@ import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:restaurant/shared/constant.dart';
-import 'package:restaurant/shared/widgets/single_tip.dart';
+import 'package:restaurant/shared/widgets/start_screens_widgets/single_tip.dart';
 
 class Tips extends StatelessWidget {
   static const String id = 'tips_screen';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:restaurant/shared/widgets/default_form_field.dart';
+import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
 import 'package:restaurant/shared/widgets/shopping_screen_header.dart';
 
 class MyProfileScreen extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/screen_utils/utils.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
-import 'package:restaurant/shared/widgets/default_form_field.dart';
+import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   static const String id = 'ForgetPassword_screen';
