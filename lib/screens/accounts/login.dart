@@ -3,20 +3,23 @@ import 'package:restaurant/screens/home/home_screen.dart';
 import 'package:restaurant/screens/accounts/forgetpassword.dart';
 import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/shared/colors.dart';
+import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
+import 'package:restaurant/shared/widgets/account_widgets/account_question.dart';
 import 'package:restaurant/shared/widgets/default_form_field.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
-  const LoginScreen({Key key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailController;
-  TextEditingController passwordController;
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
   bool showPassword = true;
+  final _globalKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: <Widget>[
             Expanded(
               child: Form(
+                key: _globalKey,
                 child: GestureDetector(
                   onTap: () {
                     FocusScope.of(context).unfocus();
@@ -112,60 +116,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      MaterialButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, HomeScreen.id);
+                      AccountsButton(
+                        buttonText: 'Log in',
+                        onPressButton: () {
+                          // login and go to home screen
+                          if (_globalKey.currentState.validate()) {
+                            print('login Data ------------->');
+                            print('User Email is: ${emailController.text}');
+                            print('User pass is: ${passwordController.text}');
+                            Navigator.pushNamed(context, HomeScreen.id);
+                          }
                         },
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Text(
-                            'Log in',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.0,
-                            ),
-                          ),
-                        ),
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account?",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, RegisterScreen.id);
-                    },
-                    child: Text(
-                      'Sigin Up',
-                      style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            AccountQuestion(
+              accountQuestion: "Don't have an account?",
+              buttonText: 'Sigin Up',
+              onTapButton: () {
+              Navigator.pushNamed(context, RegisterScreen.id);
+            },
             ),
           ],
         ),

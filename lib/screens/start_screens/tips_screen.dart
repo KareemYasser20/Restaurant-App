@@ -7,17 +7,9 @@ import 'package:page_indicator/page_indicator.dart';
 import 'package:restaurant/shared/constant.dart';
 import 'package:restaurant/shared/widgets/single_tip.dart';
 
-
-class Tips extends StatefulWidget {
+class Tips extends StatelessWidget {
   static const String id = 'tips_screen';
-  const Tips({Key key}) : super(key: key);
 
-  @override
-  State<Tips> createState() => _TipsState();
-}
-
-class _TipsState extends State<Tips> {
-  
   @override
   Widget build(BuildContext context) {
     double myHeight = MediaQuery.of(context).size.height / 6;
@@ -36,7 +28,7 @@ class _TipsState extends State<Tips> {
                     fontSize: 22.0,
                   ),
                 ),
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, LoginScreen.id);
                 },
               ),
@@ -92,7 +84,9 @@ class _TipsState extends State<Tips> {
                             Navigator.pushNamed(context, RegisterScreen.id);
                           },
                         ),
-                        SizedBox(height: 10.0,),
+                        SizedBox(
+                          height: 10.0,
+                        ),
                         MaterialButton(
                           child: Container(
                             alignment: Alignment.center,

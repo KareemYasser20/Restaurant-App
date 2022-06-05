@@ -1,20 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/tips_screen.dart';
+import 'package:restaurant/screens/start_screens/tips_screen.dart';
 import 'package:restaurant/shared/colors.dart';
 
-class GetStartScreen extends StatefulWidget {
+class GetStartScreen extends StatelessWidget {
   static const String id = 'getStart_screen';
-  const GetStartScreen({Key key}) : super(key: key);
 
-  @override
-  State<GetStartScreen> createState() => _GetStartScreenState();
-}
-
-class _GetStartScreenState extends State<GetStartScreen> {
   @override
   Widget build(BuildContext context) {
     double myHeight = MediaQuery.of(context).size.height/4;
+    
     return Scaffold(
         body: Container(
           child: Column(

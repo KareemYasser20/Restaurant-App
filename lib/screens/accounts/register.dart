@@ -1,24 +1,40 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
+import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
+import 'package:restaurant/shared/widgets/account_widgets/account_question.dart';
 import 'package:restaurant/shared/widgets/default_form_field.dart';
-
-import 'login.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String id = 'register_screen';
-  const RegisterScreen({Key key}) : super(key: key);
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController nameController;
-  TextEditingController emailController;
-  TextEditingController passwordController;
-  TextEditingController phoneController;
+  TextEditingController nameController  = new TextEditingController();
+  TextEditingController emailController  = new TextEditingController();
+  TextEditingController addressController  = new TextEditingController();
+  TextEditingController passwordController  = new TextEditingController();
+  TextEditingController phoneController  = new TextEditingController();
   bool showPassword = true;
+  PickedFile _imageFile; // this variable will store image will be select from camera or gallery
+  final ImagePicker _picker = ImagePicker();
+  final _globalKey = GlobalKey<FormState>(); 
+
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(
+      source: source,
+    );
+    setState(() {
+      _imageFile = pickedFile;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: <Widget>[
             Expanded(
               child: Form(
+                key: _globalKey,
                 child: GestureDetector(
                   onTap: () {
                     FocusScope.of(context).unfocus();
@@ -60,6 +77,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                       ),
+
+                      imageProfile(),
+
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      
                       DefaultFormField(
                         controller: nameController,
                         hintText: 'User Name',
@@ -69,9 +93,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (value.isEmpty) {
                             return 'Please enter the user name';
                           }
-                          return null;
+                          
                         },
                       ),
+                      
                       DefaultFormField(
                         controller: emailController,
                         hintText: 'Email',
@@ -86,6 +111,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return null;
                         },
                       ),
+                     
+                      DefaultFormField(
+                        controller: addressController,
+                        hintText: 'Address',
+                        isPasswordTextFeild: false,
+                        inputType: TextInputType.text,
+                        validatorFunction: (String value) {
+                          if (value.isEmpty) {
+                            return 'Please enter valid Address';
+                          }
+                          return null;
+                        },
+                      ),
+                      
                       DefaultFormField(
                         controller: passwordController,
                         hintText: 'Password',
@@ -105,57 +144,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return null;
                         },
                       ),
+                      
                       DefaultFormField(
                         hintText: 'Confirm Password',
                         obscureValue: true,
                         isPasswordTextFeild: false,
                         showPassword: showPassword,
-                        // showPassword: showPassword,
-                        // suffixIconFunction: () {
-                        //   setState(() {
-                        //     showPassword = !showPassword;
-                        //   });
-                        // },
                         inputType: TextInputType.text,
                         validatorFunction: (String value) {
-                          if (value.isEmpty ||
-                              value == passwordController.text) {
+                          if (value.isEmpty || value != passwordController.text ) {
                             return 'the password and Confirm Password doesnot match';
                           }
                           return null;
                         },
                       ),
+                      
                       DefaultFormField(
                         controller: phoneController,
                         hintText: 'Phone',
                         isPasswordTextFeild: false,
                         inputType: TextInputType.number,
                         validatorFunction: (String value) {
-                          if (value.isEmpty || value.length < 10) {
+                          if (value.isEmpty || value.length < 11) {
                             return 'Please enter valid number';
                           }
                           return null;
                         },
                       ),
-                      MaterialButton(
-                        onPressed: () {},
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Text(
-                            'Sigin Up',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.0,
-                            ),
-                          ),
-                        ),
-                      ),
+                    
+
+                    AccountsButton(
+                      buttonText: 'Sigin Up',
+                       onPressButton: () {
+                          if(_globalKey.currentState.validate()){
+                            print('User Data ------------->');
+                            print('User image is: ${_imageFile.path.toString()}');
+                            print('User Name is: ${nameController.text}');
+                            print('User Email is: ${emailController.text}');
+                            print('User Adress is: ${addressController.text}');
+                            print('User pass is: ${passwordController.text}');
+                            print('User phone is: ${phoneController.text}');
+                          }
+                        },
+                       ),
+
                       Container(
                         alignment: Alignment.bottomCenter,
                         margin: EdgeInsets.only(top: 20.0),
@@ -168,38 +200,107 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already have an account?",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(5.0),
-                  ),
-                  GestureDetector(
-                    onTap: () {
+
+            AccountQuestion(
+              accountQuestion: "Already have an account?",
+              buttonText: 'Login',
+              onTapButton: () {
                       Navigator.pushNamed(context, LoginScreen.id);
                     },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        color: primaryColor,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                ),
+     
           ],
         ),
       ),
     );
   }
+
+  Widget bottomSheet() {
+    return Container(
+      height: 100.0,
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(
+        vertical: 20.0,
+        horizontal: 20.0,
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Choose profile photo',
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              FlatButton.icon(
+                icon: Icon(Icons.camera),
+                onPressed: () {
+                  takePhoto(ImageSource.camera);
+                },
+                label: Text('Camera'),
+              ),
+              FlatButton.icon(
+                icon: Icon(Icons.image),
+                onPressed: () {
+                  takePhoto(ImageSource.gallery);
+                },
+                label: Text('Gallery'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+    
+  }
+
+  Widget imageProfile(){
+    return Center(
+      child: Stack(
+        children: [
+          CircleAvatar(
+            radius: 70.0,
+            backgroundImage: _imageFile ==null ? AssetImage("images/product/burger.jpg"): FileImage(File(_imageFile.path)),
+          ),
+          Positioned(
+            bottom: 0.0,
+            right: 0.0,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  builder: (context) => bottomSheet(),
+                  context: context,
+                );
+              },
+              child: Container(
+                height: 45.0,
+                width: 45.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: primaryColor,
+                  border: Border.all(
+                    width: 4.0,
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                  ),
+                ),
+                child: Icon(
+                  Icons.camera_alt,
+                  size: 28.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+ 
+  }
+
+
 }

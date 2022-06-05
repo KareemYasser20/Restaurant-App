@@ -4,16 +4,17 @@ import 'package:restaurant/screens/accounts/forgetpassword.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/screens/accounts/my_profile.dart';
 import 'package:restaurant/screens/accounts/register.dart';
+import 'package:restaurant/screens/drawer/drawer_screen.dart';
 import 'package:restaurant/screens/favorite/favorite_screen.dart';
-import 'package:restaurant/screens/getStart_screen.dart';
+import 'package:restaurant/screens/start_screens/getStart_screen.dart';
 import 'package:restaurant/screens/home/home_screen.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/screens/product/product_deatils.dart';
 import 'package:restaurant/screens/product/sub_category.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
-import 'package:restaurant/screens/splash_screen.dart';
-import 'package:restaurant/screens/tips_screen.dart';
-import 'package:restaurant/screens/user_page/drawer_screen.dart';
+import 'package:restaurant/screens/start_screens/splash_screen.dart';
+import 'package:restaurant/screens/start_screens/tips_screen.dart';
+
 void main() {
   runApp(MyApp());
 }

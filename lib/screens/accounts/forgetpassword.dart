@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
+import 'package:restaurant/shared/screen_utils/utils.dart';
+import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
 import 'package:restaurant/shared/widgets/default_form_field.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   static const String id = 'ForgetPassword_screen';
-  const ForgetPasswordScreen({ Key key }) : super(key: key);
 
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  TextEditingController emailController;
+  TextEditingController emailController = new TextEditingController();
+  final _globalKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +39,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           children: <Widget>[
             Expanded(
               child: Form(
+                key: _globalKey,
                 child: ListView(
                   children: <Widget>[
                     Container(
@@ -60,48 +65,41 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 25.0,),
-
+                    SizedBox(
+                      height: 25.0,
+                    ),
                     DefaultFormField(
                       controller: emailController,
                       hintText: 'Email',
+                      isPasswordTextFeild: false,
                       inputType: TextInputType.emailAddress,
                       validatorFunction: (String value) {
-                        if (value.isEmpty || value.indexOf(".") == -1 || value.indexOf("@") == -1 ) {
+                        if (value.isEmpty ||
+                            value.indexOf(".") == -1 ||
+                            value.indexOf("@") == -1) {
                           return 'Please enter valid Email';
                         }
-                        return null;
                       },
                     ),
-
-                    SizedBox(height: 20.0,),
-
-                    MaterialButton(
-                      onPressed: () {
-                        
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    AccountsButton(
+                      buttonText: 'Send',
+                      onPressButton: () {
+                        if (_globalKey.currentState.validate()) {
+                          print('user email to reset --->');
+                          print('user email : ${emailController.text}');
+                          Utils.showSnackBar(context, 'check your email to change the password');
+                          Navigator.pushNamed(context, LoginScreen.id);
+                        }
                       },
-                      child: Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            child: Text(
-                              'Send',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 22.0,
-                              ),
-                            ),
-                          ),
                     ),
                   ],
                 ),
               ),
             ),
-           ],
+          ],
         ),
       ),
     );

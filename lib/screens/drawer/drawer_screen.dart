@@ -3,6 +3,7 @@ import 'package:restaurant/screens/accounts/change_password.dart';
 import 'package:restaurant/screens/accounts/my_profile.dart';
 import 'package:restaurant/screens/favorite/favorite_screen.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
+import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -49,8 +50,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               ),
             ),
             ExpansionTile(
-              tilePadding: EdgeInsets.only(left:20.0 , right: 22.0),
-
+              tilePadding: EdgeInsets.only(left: 20.0, right: 22.0),
               leading: Icon(
                 Icons.person,
                 color: primaryColor,
@@ -81,11 +81,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
               ],
             ),
             Divider(
-            color: Colors.grey.shade500,
-          ),
+              color: Colors.grey.shade500,
+            ),
             DrawerItem(
-              titleText: "Order History",
-              drawerIcon: Icons.history,
+              titleText: "My Orders",
+              drawerIcon: Icons.shopping_bag_outlined,
+              onTapFunction: () {
+                Navigator.pushNamed(context, ShoppingScreen.id);
+              },
             ),
             DrawerItem(
               titleText: "Delivery Address",
@@ -94,12 +97,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
             DrawerItem(
               titleText: "Favorite",
               drawerIcon: Icons.favorite,
-              onTapFunction: (){Navigator.pushNamed(context, FavoriteScreen.id);},
+              onTapFunction: () {
+                Navigator.pushNamed(context, FavoriteScreen.id);
+              },
             ),
-             DrawerItem(
+            DrawerItem(
               titleText: "Track orders",
               drawerIcon: Icons.drive_eta,
-              onTapFunction: (){Navigator.pushNamed(context, TrackingOrder.id);},
+              onTapFunction: () {
+                Navigator.pushNamed(context, TrackingOrder.id);
+              },
             ),
             DrawerItem(
               titleText: "About Us",
@@ -122,7 +129,8 @@ class DrawerItem extends StatelessWidget {
   final Function onTapFunction;
   Color dividerColor = Colors.grey.shade500;
 
-  DrawerItem({this.titleText, this.drawerIcon, this.onTapFunction , this.dividerColor});
+  DrawerItem(
+      {this.titleText, this.drawerIcon, this.onTapFunction, this.dividerColor});
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +162,6 @@ class DrawerItem extends StatelessWidget {
           Divider(
             color: dividerColor,
           ),
-
         ],
       ),
     );

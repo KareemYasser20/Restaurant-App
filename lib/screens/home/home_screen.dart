@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant/screens/drawer/drawer_screen.dart';
 import 'package:restaurant/screens/product/product_deatils.dart';
 import 'package:restaurant/screens/product/sub_category.dart';
-import 'package:restaurant/screens/user_page/drawer_screen.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/constant.dart';
 import 'package:restaurant/shared/widgets/single_category.dart';
@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 520.0,
+            height: MediaQuery.of(context).size.height /1.68 , //520
             child: ListView.builder(
               itemCount: productList.length,
               itemBuilder: (context, index) {
