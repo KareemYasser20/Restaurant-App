@@ -114,7 +114,6 @@ var subCategoryList = [
     },
   ];
   
-  
   var productList = [
 
     {
