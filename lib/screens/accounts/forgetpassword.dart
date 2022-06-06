@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/screen_utils/utils.dart';
+// import 'package:restaurant/shared/screen_utils/utils.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
 import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
 
@@ -90,7 +91,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         if (_globalKey.currentState.validate()) {
                           print('user email to reset --->');
                           print('user email : ${emailController.text}');
-                          Utils.showSnackBar(context, 'check your email to change the password');
+                          // Utils.showSnackBar(context, 'check your email to change the password');
                           Navigator.pushNamed(context, LoginScreen.id);
                         }
                       },
