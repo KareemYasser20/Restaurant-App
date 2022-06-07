@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/product/product_deatils.dart';
+import 'package:restaurant/screens/product/product_details.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/constant.dart';
 
@@ -41,13 +41,13 @@ class _ProductsState extends State<Products> {
                 productDescription: productList[index]["productDescription"],
                 productImage: productList[index]["productImage"],
                 onTapFunction: () {
-                  Navigator.pushNamed(context, ProductDeatils.id,
-                      arguments: ProductDeatils(
+                  Navigator.pushNamed(context, ProductDetails.id,
+                      arguments: ProductDetails(
                         productId: productList[index]["productId"],
                         productName: productList[index]["productName"],
                         productDescription: productList[index]
                             ["productDescription"],
-                        productIamge: productList[index]["productImage"],
+                        productImage: productList[index]["productImage"],
                         productPrice: productList[index]["ProductPrice"],
                       ));
                 });

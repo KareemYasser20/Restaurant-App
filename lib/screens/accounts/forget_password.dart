@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:restaurant/shared/screen_utils/utils.dart';
-// import 'package:restaurant/shared/screen_utils/utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:restaurant/shared/constant.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
 import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
 
@@ -16,6 +16,7 @@ class ForgetPasswordScreen extends StatefulWidget {
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   TextEditingController emailController = new TextEditingController();
   final _globalKey = GlobalKey<FormState>();
+  FToast fToast = FToast();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     DefaultFormField(
                       controller: emailController,
                       hintText: 'Email',
-                      isPasswordTextFeild: false,
+                      isPasswordTextField: false,
                       inputType: TextInputType.emailAddress,
                       validatorFunction: (String value) {
                         if (value.isEmpty ||
@@ -88,10 +89,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     AccountsButton(
                       buttonText: 'Send',
                       onPressButton: () {
+                        fToast.init(context);
                         if (_globalKey.currentState.validate()) {
                           print('user email to reset --->');
                           print('user email : ${emailController.text}');
-                          // Utils.showSnackBar(context, 'check your email to change the password');
+                          fToast.showToast(
+                            child: toastWidget(message :"check your email to change the password" , toastIcon: Icons.info_outline_rounded ,),
+                            gravity: ToastGravity.BOTTOM,
+                            toastDuration: Duration(seconds: 4),
+                          );
                           Navigator.pushNamed(context, LoginScreen.id);
                         }
                       },

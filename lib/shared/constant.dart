@@ -1,7 +1,9 @@
-var tipsarr = [
+import 'package:flutter/material.dart';
+
+var tipsArray = [
     {
       "title": "Find Foods you Love",
-      "info": "Discover the best foods from our resturants",
+      "info": "Discover the best foods from our restaurants",
       "image": "images/tip1.png",
     },
     {
@@ -129,7 +131,7 @@ var subCategoryList = [
     {
       "productId": "2",
       "productName": "Fish",
-      "productDescription": "Food Descrption and price",
+      "productDescription": "Food Description and price",
       "productImage": "images/product/fish.jpg",
       "ProductPrice" : 15,
       "ProductOffer" : "1",
@@ -138,7 +140,7 @@ var subCategoryList = [
     {
       "productId": "3",
       "productName": "Fresh Juice",
-      "productDescription": "Food Descrption and price ",
+      "productDescription": "Food Description and price ",
       "productImage": "images/product/fresh_juice.jpg",
       "ProductPrice" : 20,
       "ProductOffer" : "0",
@@ -147,7 +149,7 @@ var subCategoryList = [
     {
       "productId": "4",
       "productName": "Pizza",
-      "productDescription": "Food Descrption and price",
+      "productDescription": "Food Description and price",
       "productImage": "images/product/pizza.jpg",
       "ProductPrice" : 25,
       "ProductOffer" : "0",
@@ -207,3 +209,24 @@ var subCategoryList = [
     "productImage": "images/product/burger.jpg",
   },
 ];
+
+
+  Widget toastWidget({String message , IconData toastIcon}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.grey[350],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(toastIcon),
+          SizedBox(
+            width: 10.0,
+          ),
+          Text(message),
+        ],
+      ),
+    );
+  }

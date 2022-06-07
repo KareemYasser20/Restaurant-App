@@ -12,7 +12,7 @@ class Splash extends StatelessWidget {
       seconds: 5,
       navigateAfterSeconds: GetStartScreen(),
       title: Text(
-        'Welcome In Our Resturant',
+        'Welcome In Our Restaurant',
         style: TextStyle(
             fontWeight: FontWeight.bold, fontSize: 20.0, color: Colors.white),
       ),

@@ -6,9 +6,9 @@ class DefaultFormField extends StatelessWidget {
   final TextInputType inputType;
   final Function validatorFunction;
   final bool obscureValue;
-  final bool isPasswordTextFeild;
+  final bool isPasswordTextField;
   final Function suffixIconFunction;
-  bool showPassword = false;
+  final bool showPassword;
 
   DefaultFormField(
       {this.controller,
@@ -16,7 +16,7 @@ class DefaultFormField extends StatelessWidget {
       this.inputType,
       this.validatorFunction,
       this.obscureValue,
-      this.isPasswordTextFeild,
+      this.isPasswordTextField,
       this.showPassword,
       this.suffixIconFunction});
 
@@ -30,15 +30,15 @@ class DefaultFormField extends StatelessWidget {
         borderRadius: BorderRadius.circular(25.0),
       ),
       child: TextFormField(
-        obscureText: obscureValue ?? false ? showPassword : false,
+        obscureText: obscureValue ?? false ? showPassword?? false : false,
         controller: controller,
         keyboardType: inputType,
         decoration: InputDecoration(
-          suffixIcon: isPasswordTextFeild
+          suffixIcon: isPasswordTextField
               ? IconButton(
                   onPressed: suffixIconFunction,
                   icon: Icon(
-                    showPassword ? Icons.visibility : Icons.visibility_off,
+                    showPassword??false ? Icons.visibility : Icons.visibility_off,
                     color: Colors.grey,
                   ),
                 )

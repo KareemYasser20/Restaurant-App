@@ -43,16 +43,16 @@ class Tips extends StatelessWidget {
                   child: PageView.builder(
                     physics: AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: tipsarr.length,
+                    itemCount: tipsArray.length,
                     itemBuilder: (context, index) {
                       return SingleTip(
-                        title: tipsarr[index]["title"],
-                        info: tipsarr[index]["info"],
-                        image: tipsarr[index]["image"],
+                        title: tipsArray[index]["title"],
+                        info: tipsArray[index]["info"],
+                        image: tipsArray[index]["image"],
                       );
                     },
                   ),
-                  length: tipsarr.length),
+                  length: tipsArray.length),
             ),
             Expanded(
               child: Container(

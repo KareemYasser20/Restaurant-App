@@ -42,7 +42,7 @@ class _SubCategoryState extends State<SubCategory> {
                   subCategoryId: subCategoryList[index]["subCategoryId"],
                   subCategoryImage: subCategoryList[index]["subCategoryImage"],
                   subCategoryName: subCategoryList[index]["subCategoryName"],
-                  onTapFuncation: () {
+                  onTapFunction: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Products(productData: subCategoryList[index],)));
                   },
@@ -58,14 +58,14 @@ class SingleSubCategory extends StatelessWidget {
   final String subCategoryName;
   final String subCategoryImage;
   final String subCategoryCount;
-  final Function onTapFuncation;
+  final Function onTapFunction;
 
   SingleSubCategory(
       {this.subCategoryId,
       this.subCategoryName,
       this.subCategoryImage,
       this.subCategoryCount,
-      this.onTapFuncation});
+      this.onTapFunction});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,7 +73,7 @@ class SingleSubCategory extends StatelessWidget {
       child: Column(
         children: <Widget>[
           InkWell(
-            onTap: onTapFuncation,
+            onTap: onTapFunction,
             child: ListTile(
               leading: Container(
                 width: 55.0,

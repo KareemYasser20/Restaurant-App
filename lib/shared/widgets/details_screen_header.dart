@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import '../colors.dart';
 
-class DettilsHeader extends StatelessWidget {
+class DetailsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -11,14 +11,14 @@ class ShoppingScreen extends StatefulWidget {
   final String productId;
   final String productName;
   final String productDescription;
-  final String productIamge;
+  final String productImage;
   final int productPrice;
 
   ShoppingScreen(
       {this.productId,
       this.productName,
       this.productDescription,
-      this.productIamge,
+      this.productImage,
       this.productPrice});
 
   @override

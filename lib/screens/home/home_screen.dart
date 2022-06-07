@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/drawer/drawer_screen.dart';
-import 'package:restaurant/screens/product/product_deatils.dart';
+import 'package:restaurant/screens/product/product_details.dart';
 import 'package:restaurant/screens/product/sub_category.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/constant.dart';
@@ -17,11 +17,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  GlobalKey<ScaffoldState> _keyDrwaer = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _keyDrawer = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _keyDrwaer,
+      key: _keyDrawer,
       endDrawer: DrawerScreen(),
       body: Column(
         children: <Widget>[
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _keyDrwaer.currentState.openEndDrawer();
+                    _keyDrawer.currentState.openEndDrawer();
                   },
                   child: Icon(
                     Icons.menu,
@@ -135,13 +135,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         ["productDescription"],
                     productImage: productList[index]["productImage"],
                     onTapFunction: () {
-                      Navigator.pushNamed(context, ProductDeatils.id,
-                          arguments: ProductDeatils(
+                      Navigator.pushNamed(context, ProductDetails.id,
+                          arguments: ProductDetails(
                             productId: productList[index]["productId"],
                             productName: productList[index]["productName"],
                             productDescription: productList[index]
                                 ["productDescription"],
-                            productIamge: productList[index]["productImage"],
+                            productImage: productList[index]["productImage"],
                             productPrice: productList[index]["ProductPrice"],
                           ));
                     });

@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../colors.dart';
 
-class DeatilsImageWidget extends StatefulWidget {
+class DetailsImageWidget extends StatefulWidget {
   final String image;
-  DeatilsImageWidget({@required this.image});
+  DetailsImageWidget({@required this.image});
 
   @override
-  _DeatilsImageWidgetState createState() => _DeatilsImageWidgetState();
+  _DetailsImageWidgetState createState() => _DetailsImageWidgetState();
 }
 
-class _DeatilsImageWidgetState extends State<DeatilsImageWidget> {
+class _DetailsImageWidgetState extends State<DetailsImageWidget> {
   int counter = 0;
   @override
   Widget build(BuildContext context) {

@@ -33,7 +33,7 @@ dependencies:
   font_awesome_flutter:
   timeline_tile:
   image_picker:
-  flushbar:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:

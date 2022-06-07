@@ -87,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       DefaultFormField(
                         controller: nameController,
                         hintText: 'User Name',
-                        isPasswordTextFeild: false,
+                        isPasswordTextField: false,
                         inputType: TextInputType.text,
                         validatorFunction: (String value) {
                           if (value.isEmpty) {
@@ -100,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       DefaultFormField(
                         controller: emailController,
                         hintText: 'Email',
-                        isPasswordTextFeild: false,
+                        isPasswordTextField: false,
                         inputType: TextInputType.emailAddress,
                         validatorFunction: (String value) {
                           if (value.isEmpty ||
@@ -115,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       DefaultFormField(
                         controller: addressController,
                         hintText: 'Address',
-                        isPasswordTextFeild: false,
+                        isPasswordTextField: false,
                         inputType: TextInputType.text,
                         validatorFunction: (String value) {
                           if (value.isEmpty) {
@@ -128,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       DefaultFormField(
                         controller: passwordController,
                         hintText: 'Password',
-                        isPasswordTextFeild: true,
+                        isPasswordTextField: true,
                         showPassword: showPassword,
                         suffixIconFunction: () {
                           setState(() {
@@ -148,12 +148,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       DefaultFormField(
                         hintText: 'Confirm Password',
                         obscureValue: true,
-                        isPasswordTextFeild: false,
+                        isPasswordTextField: false,
                         showPassword: showPassword,
                         inputType: TextInputType.text,
                         validatorFunction: (String value) {
                           if (value.isEmpty || value != passwordController.text ) {
-                            return 'the password and Confirm Password doesnot match';
+                            return "the password and Confirm Password doesn't match";
                           }
                           return null;
                         },
@@ -162,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       DefaultFormField(
                         controller: phoneController,
                         hintText: 'Phone',
-                        isPasswordTextFeild: false,
+                        isPasswordTextField: false,
                         inputType: TextInputType.number,
                         validatorFunction: (String value) {
                           if (value.isEmpty || value.length < 11) {
@@ -174,14 +174,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     
 
                     AccountsButton(
-                      buttonText: 'Sigin Up',
+                      buttonText: 'Sign  Up',
                        onPressButton: () {
                           if(_globalKey.currentState.validate()){
                             print('User Data ------------->');
                             print('User image is: ${_imageFile.path.toString()}');
                             print('User Name is: ${nameController.text}');
                             print('User Email is: ${emailController.text}');
-                            print('User Adress is: ${addressController.text}');
+                            print('User Address is: ${addressController.text}');
                             print('User pass is: ${passwordController.text}');
                             print('User phone is: ${phoneController.text}');
                           }

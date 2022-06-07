@@ -127,7 +127,7 @@ class DrawerItem extends StatelessWidget {
   final String titleText;
   final IconData drawerIcon;
   final Function onTapFunction;
-  Color dividerColor = Colors.grey.shade500;
+  final Color dividerColor;
 
   DrawerItem(
       {this.titleText, this.drawerIcon, this.onTapFunction, this.dividerColor});
@@ -160,7 +160,7 @@ class DrawerItem extends StatelessWidget {
             ),
           ),
           Divider(
-            color: dividerColor,
+            color: dividerColor ?? Colors.grey.shade500,
           ),
         ],
       ),

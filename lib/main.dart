@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/change_password.dart';
-import 'package:restaurant/screens/accounts/forgetpassword.dart';
+import 'package:restaurant/screens/accounts/forget_password.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/screens/accounts/my_profile.dart';
 import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/screens/drawer/drawer_screen.dart';
 import 'package:restaurant/screens/favorite/favorite_screen.dart';
+import 'package:restaurant/screens/product/product_details.dart';
 import 'package:restaurant/screens/start_screens/getStart_screen.dart';
 import 'package:restaurant/screens/home/home_screen.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
-import 'package:restaurant/screens/product/product_deatils.dart';
 import 'package:restaurant/screens/product/sub_category.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/screens/start_screens/splash_screen.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         ForgetPasswordScreen.id : (context) => ForgetPasswordScreen(),
         HomeScreen.id : (context) => HomeScreen(),
         DrawerScreen.id : (context) => DrawerScreen(),
-        ProductDeatils.id : (context) => ProductDeatils(),
+        ProductDetails.id : (context) => ProductDetails(),
         ShoppingScreen.id : (context) => ShoppingScreen(),
         MyProfileScreen.id : (context) => MyProfileScreen(),
         ChangePasswordScreen.id : (context) => ChangePasswordScreen(),

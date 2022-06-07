@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:restaurant/shared/widgets/deatils_screen_image.dart';
-import 'package:restaurant/shared/widgets/detils_screen_header.dart';
+import 'package:restaurant/shared/widgets/details_screen_image.dart';
+import 'package:restaurant/shared/widgets/details_screen_header.dart';
 
-class ProductDeatils extends StatefulWidget {
-  static const String id = 'productDeatils_screen';
+class ProductDetails extends StatefulWidget {
+  static const String id = 'productDetails_screen';
   final String productId;
   final String productName;
   final String productDescription;
-  final String productIamge;
+  final String productImage;
   final int productPrice;
 
-  ProductDeatils(
+  ProductDetails(
       {this.productId,
       this.productName,
       this.productDescription,
-      this.productIamge,
+      this.productImage,
       this.productPrice});
 
   @override
-  State<ProductDeatils> createState() => _ProductDeatilsState();
+  State<ProductDetails> createState() => _ProductDetailsState();
 }
 
-class _ProductDeatilsState extends State<ProductDeatils> {
+class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context).settings.arguments as ProductDeatils;
+    final args = ModalRoute.of(context).settings.arguments as ProductDetails;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
           ListView(
             children: [
-              DeatilsImageWidget(
-                image: args.productIamge,
+              DetailsImageWidget(
+                image: args.productImage,
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -69,7 +69,7 @@ class _ProductDeatilsState extends State<ProductDeatils> {
             right: 0.0,
             left: 0.0,
             height: 135.0,
-            child: DettilsHeader(),
+            child: DetailsHeader(),
           ),
         ],
       ),

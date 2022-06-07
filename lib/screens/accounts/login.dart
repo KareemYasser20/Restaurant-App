@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/home/home_screen.dart';
-import 'package:restaurant/screens/accounts/forgetpassword.dart';
+import 'package:restaurant/screens/accounts/forget_password.dart';
 import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: emailController,
                         hintText: 'Email',
                         inputType: TextInputType.emailAddress,
-                        isPasswordTextFeild: false,
+                        isPasswordTextField: false,
                         validatorFunction: (String value) {
                           if (value.isEmpty ||
                               value.indexOf(".") == -1 ||
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: passwordController,
                         hintText: 'Password',
                         obscureValue: true,
-                        isPasswordTextFeild: true,
+                        isPasswordTextField: true,
                         showPassword: showPassword,
                         suffixIconFunction: () {
                           setState(() {
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             AccountQuestion(
               accountQuestion: "Don't have an account?",
-              buttonText: 'Sigin Up',
+              buttonText: 'Sign  Up',
               onTapButton: () {
               Navigator.pushNamed(context, RegisterScreen.id);
             },

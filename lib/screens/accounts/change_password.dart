@@ -46,7 +46,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     controller: oldPasswordController,
                     hintText: 'The Current Password',
                     obscureValue: true,
-                    isPasswordTextFeild: true,
+                    isPasswordTextField: true,
                     showPassword: showOldPassword,
                     suffixIconFunction: () {
                       setState(() {
@@ -65,7 +65,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     controller: newPasswordController,
                     hintText: 'The New Password',
                     obscureValue: true,
-                    isPasswordTextFeild: true,
+                    isPasswordTextField: true,
                     showPassword: showNewPassword,
                     suffixIconFunction: () {
                       setState(() {
@@ -84,7 +84,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     controller: confirmNewPasswordController,
                     hintText: 'Confirm New Password',
                     obscureValue: true,
-                    isPasswordTextFeild: false,
+                    isPasswordTextField: false,
                     showPassword: false,
                     inputType: TextInputType.text,
                     validatorFunction: (String value) {

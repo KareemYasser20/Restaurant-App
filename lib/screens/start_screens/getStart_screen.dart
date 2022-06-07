@@ -49,7 +49,7 @@ class GetStartScreen extends StatelessWidget {
                       children: <Widget>[
                         Text('Happy Meals' , style: TextStyle(color: Colors.white , fontSize: 24.0 , fontWeight: FontWeight.bold),),
                         SizedBox(height: 10.0,),
-                        Text('Discover the best foods from our resturants.'  , style: TextStyle(color: Colors.white , fontSize: 18.0 ),),
+                        Text('Discover the best foods from our restaurants.' , textAlign: TextAlign.center  , style: TextStyle(color: Colors.white , fontSize: 18.0 ),),
                         SizedBox(height: 30.0,),
                         GestureDetector(
                           onTap: (){

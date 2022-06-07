@@ -102,7 +102,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   DefaultFormField(
                     controller: nameController,
                     hintText: 'User Name',
-                    isPasswordTextFeild: false,
+                    isPasswordTextField: false,
                     inputType: TextInputType.text,
                     validatorFunction: (String value) {
                       if (value.isEmpty) {
@@ -114,7 +114,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   DefaultFormField(
                     controller: emailController,
                     hintText: 'Email',
-                    isPasswordTextFeild: false,
+                    isPasswordTextField: false,
                     inputType: TextInputType.emailAddress,
                     validatorFunction: (String value) {
                       if (value.isEmpty ||
@@ -129,7 +129,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     controller: passwordController,
                     hintText: 'Password',
                     obscureValue: true,
-                    isPasswordTextFeild: true,
+                    isPasswordTextField: true,
                     showPassword: showPassword,
                     suffixIconFunction: () {
                       setState(() {
@@ -147,7 +147,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   DefaultFormField(
                     controller: phoneController,
                     hintText: 'Phone',
-                    isPasswordTextFeild: false,
+                    isPasswordTextField: false,
                     inputType: TextInputType.number,
                     validatorFunction: (String value) {
                       if (value.isEmpty || value.length < 10) {
