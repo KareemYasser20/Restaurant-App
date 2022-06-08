@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/home/home_screen.dart';
+import 'package:restaurant/screens/home/home_layout.dart';
 import 'package:restaurant/screens/accounts/forget_password.dart';
 import 'package:restaurant/screens/accounts/register.dart';
 import 'package:restaurant/shared/colors.dart';
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             print('login Data ------------->');
                             print('User Email is: ${emailController.text}');
                             print('User pass is: ${passwordController.text}');
-                            Navigator.pushNamed(context, HomeScreen.id);
+                            Navigator.pushNamed(context, HomeLayout.id);
                           }
                         },
                       ),

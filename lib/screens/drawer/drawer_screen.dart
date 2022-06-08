@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/change_password.dart';
-import 'package:restaurant/screens/accounts/my_profile.dart';
+import 'package:restaurant/screens/home/my_account.dart';
 import 'package:restaurant/screens/favorite/favorite_screen.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
+import 'package:restaurant/shared/widgets/drawer_widets/drawer_item_widget.dart';
 
 class DrawerScreen extends StatefulWidget {
   static const String id = 'drawer_screen';
-  const DrawerScreen({Key key}) : super(key: key);
 
   @override
   State<DrawerScreen> createState() => _DrawerScreenState();
@@ -23,6 +23,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(
+                // TODO: put login user Name here 
                 'Kareem Yasser',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -30,6 +31,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
               ),
               accountEmail: Text(
+                // TODO: put login user email here 
                 'Kareem@gmail.com',
                 style: TextStyle(
                   fontSize: 18.0,
@@ -39,6 +41,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               currentAccountPicture: GestureDetector(
                 child: CircleAvatar(
                   backgroundColor: primaryColor,
+                  // TODO: put login user photo here 
                   child: Icon(
                     Icons.person,
                     color: Colors.white,
@@ -67,7 +70,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   titleText: "Edit Profile",
                   drawerIcon: Icons.settings,
                   onTapFunction: () {
-                    Navigator.pushNamed(context, MyProfileScreen.id);
+                    Navigator.pushNamed(context, MyAccountScreen.id);
                   },
                 ),
                 DrawerItem(
@@ -93,6 +96,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
             DrawerItem(
               titleText: "Delivery Address",
               drawerIcon: Icons.home,
+              onTapFunction: (){
+                // TODO: user Address
+              },
             ),
             DrawerItem(
               titleText: "Favorite",
@@ -111,58 +117,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
             DrawerItem(
               titleText: "About Us",
               drawerIcon: Icons.message,
+              onTapFunction: (){},
             ),
             DrawerItem(
               titleText: "Support Center",
               drawerIcon: Icons.call,
+              onTapFunction: (){},
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class DrawerItem extends StatelessWidget {
-  final String titleText;
-  final IconData drawerIcon;
-  final Function onTapFunction;
-  final Color dividerColor;
-
-  DrawerItem(
-      {this.titleText, this.drawerIcon, this.onTapFunction, this.dividerColor});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 10.0),
-      child: Column(
-        children: [
-          InkWell(
-            onTap: onTapFunction,
-            child: ListTile(
-              title: Text(
-                titleText,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                drawerIcon,
-                color: primaryColor,
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black54,
-                size: 15.0,
-              ),
-            ),
-          ),
-          Divider(
-            color: dividerColor ?? Colors.grey.shade500,
-          ),
-        ],
       ),
     );
   }

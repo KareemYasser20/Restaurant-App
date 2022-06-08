@@ -1,232 +1,341 @@
-import 'package:flutter/material.dart';
+import 'package:restaurant/models/category_model.dart';
+import 'package:restaurant/models/product_model.dart';
 
 var tipsArray = [
-    {
-      "title": "Find Foods you Love",
-      "info": "Discover the best foods from our restaurants",
-      "image": "images/tip1.png",
-    },
-    {
-      "title": "Fast Delivery",
-      "info": "Fast Delivery to your home, excellent product",
-      "image": "images/tip2.png",
-    },
-    {
-      "title": "Live Tracking",
-      "info": "Real live tracking of your food",
-      "image": "images/tip3.png",
-    },
-  ];
-
- var categoryList = [
-    {
-      "catId": "1",
-      "catName": "Seafoods",
-      "catImage": "images/category/cat1.png"
-    },
-    {
-      "catId": "2",
-      "catName": "category 2",
-      "catImage": "images/category/cat2.png"
-    },
-    {
-      "catId": "3",
-      "catName": "category 3",
-      "catImage": "images/category/cat3.png"
-    },
-    {
-      "catId": "4",
-      "catName": "category 4",
-      "catImage": "images/category/cat4.png"
-    },
-    {
-      "catId": "5",
-      "catName": "category 5",
-      "catImage": "images/category/cat5.png"
-    },
-    {
-      "catId": "6",
-      "catName": "category 6",
-      "catImage": "images/category/cat6.png"
-    },
-    {
-      "catId": "7",
-      "catName": "category 7",
-      "catImage": "images/category/cat7.png"
-    },
-    {
-      "catId": "8",
-      "catName": "category 8",
-      "catImage": "images/category/cat8.png"
-    },
-    {
-      "catId": "9",
-      "catName": "category 9",
-      "catImage": "images/category/cat9.png"
-    },
-    {
-      "catId": "10",
-      "catName": "category 10",
-      "catImage": "images/category/cat10.png"
-    },
-  ];
-  
-var subCategoryList = [
-    {
-      "subCategoryId": "1",
-      "subCategoryName": "Tuna",
-      "subCategoryImage": "images/product/burger.jpg",
-      "subCategoryCount": "10",
-    },
-    {
-      "subCategoryId": "2",
-      "subCategoryName": "Striped bass",
-      "subCategoryImage": "images/category/cat2.png",
-      "subCategoryCount": "10",
-    },
-    {
-      "subCategoryId": "3",
-      "subCategoryName": "Perch",
-      "subCategoryImage": "images/category/cat3.png",
-      "subCategoryCount": "5",
-    },
-    {
-      "subCategoryId": "4",
-      "subCategoryName": "Salmon",
-      "subCategoryImage": "images/category/cat4.png",
-      "subCategoryCount": "5",
-    },
-    {
-      "subCategoryId": "5",
-      "subCategoryName": "Cod",
-      "subCategoryImage": "images/category/cat5.png",
-      "subCategoryCount": "5",
-    },
-    {
-      "subCategoryId": "6",
-      "subCategoryName": "Sardines",
-      "subCategoryImage": "images/category/cat6.png",
-      "subCategoryCount": "5",
-    },
-    {
-      "subCategoryId": "7",
-      "subCategoryName": "Herring",
-      "subCategoryImage": "images/category/cat7.png",
-      "subCategoryCount": "5",
-    },
-  ];
-  
-  var productList = [
-
-    {
-      "productId": "1",
-      "productName": "Burger",
-      "productDescription": "Burger Sandwich with fries and extra cheese and cola drink.",
-      "productImage": "images/product/burger.jpg",
-      "ProductPrice" : 10,
-      "ProductOffer" : "1",
-      "ProductRate" : "2.0",
-
-    },
-    {
-      "productId": "2",
-      "productName": "Fish",
-      "productDescription": "Food Description and price",
-      "productImage": "images/product/fish.jpg",
-      "ProductPrice" : 15,
-      "ProductOffer" : "1",
-      "ProductRate" : "3.0",
-    },
-    {
-      "productId": "3",
-      "productName": "Fresh Juice",
-      "productDescription": "Food Description and price ",
-      "productImage": "images/product/fresh_juice.jpg",
-      "ProductPrice" : 20,
-      "ProductOffer" : "0",
-      "ProductRate" : "5.0",
-    },
-    {
-      "productId": "4",
-      "productName": "Pizza",
-      "productDescription": "Food Description and price",
-      "productImage": "images/product/pizza.jpg",
-      "ProductPrice" : 25,
-      "ProductOffer" : "0",
-      "ProductRate" : "1.0",
-    },
-    
-  ];
-
-  var shoppingProduct = [
   {
-    "productId": "1",
-    "productName": "juice",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
+    "title": "Find Foods you Love",
+    "info": "Discover the best foods from our restaurants",
+    "image": "images/tip1.png",
   },
   {
-    "productId": "2",
-    "productName": "burger",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
+    "title": "Fast Delivery",
+    "info": "Fast Delivery to your home, excellent product",
+    "image": "images/tip2.png",
   },
   {
-    "productId": "3",
-    "productName": "Pizza",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
-  },
-  {
-    "productId": "4",
-    "productName": "happy meal",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
-  },
-  {
-    "productId": "5",
-    "productName": "fish",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
-  },
-  {
-    "productId": "5",
-    "productName": "fish",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
-  },
-  {
-    "productId": "5",
-    "productName": "fish",
-    "productPrice": 100,
-    "productQuantity": "2",
-    "productImage": "images/product/burger.jpg",
+    "title": "Live Tracking",
+    "info": "Real live tracking of your food",
+    "image": "images/tip3.png",
   },
 ];
 
+var categoryList = [
+  CategoryModel(
+    categoryId: 1,
+    categoryName: "Seafoods",
+    categoryImage: "images/category/cat1.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 1,
+        productName: "Burger",
+        productDescription:
+            "Burger Sandwich with fries and extra cheese and cola drink.",
+        productImage: "images/product/burger.jpg",
+        productPrice: 10,
+        productOffer: 1,
+        productRate: 2.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 5,
+      ),
+      ProductModel(
+        productId: 2,
+        productName: "Fish",
+        productDescription: "Food Description and price.",
+        productImage: "images/product/fish.jpg",
+        productPrice: 15,
+        productOffer: 1,
+        productRate: 3.0,
+        productFavourite: 0,
+        productFirstShow: 1,
+        productQuantity: 10,
+      ),
+    ],
+  ),
 
-  Widget toastWidget({String message , IconData toastIcon}) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.0),
-        color: Colors.grey[350],
+  CategoryModel(
+    categoryId: 2,
+    categoryName: "category 2",
+    categoryImage: "images/category/cat2.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(toastIcon),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(message),
-        ],
+      ProductModel(
+        productId: 4,
+        productName: "Pizza",
+        productDescription: "Food Description and price.",
+        productImage: "images/product/pizza.jpg",
+        productPrice: 25,
+        productOffer: 0,
+        productRate: 1.0,
+        productFavourite: 0,
+        productFirstShow: 1,
+        productQuantity: 15,
       ),
-    );
-  }
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 3,
+    categoryName: "category 3",
+    categoryImage: "images/category/cat3.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+      ProductModel(
+        productId: 4,
+        productName: "Pizza",
+        productDescription: "Food Description and price.",
+        productImage: "images/product/pizza.jpg",
+        productPrice: 25,
+        productOffer: 0,
+        productRate: 1.0,
+        productFavourite: 0,
+        productFirstShow: 1,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 4,
+    categoryName: "category 4",
+    categoryImage: "images/category/cat4.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 5,
+    categoryName: "category 5",
+    categoryImage: "images/category/cat5.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+  
+  CategoryModel(
+    categoryId: 6,
+    categoryName: "category 6",
+    categoryImage: "images/category/cat6.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 7,
+    categoryName: "category 7",
+    categoryImage: "images/category/cat7.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 8,
+    categoryName: "category 8",
+    categoryImage: "images/category/cat8.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 9,
+    categoryName: "category 9",
+    categoryImage: "images/category/cat9.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+  CategoryModel(
+    categoryId: 10,
+    categoryName: "category 10",
+    categoryImage: "images/category/cat10.png",
+    subCategoryProducts: [
+      ProductModel(
+        productId: 3,
+        productName: "Fresh Juice",
+        productDescription: "Food Description and price ",
+        productImage: "images/product/fresh_juice.jpg",
+        productPrice: 20,
+        productOffer: 0,
+        productRate: 5.0,
+        productFavourite: 1,
+        productFirstShow: 0,
+        productQuantity: 15,
+      ),
+    ],
+  ),
+
+];
+
+var homeProductList = [
+  ProductModel(
+    productId: 1,
+    productName: "Burger",
+    productDescription:"Burger Sandwich with fries and extra cheese and cola drink.",
+    productImage: "images/product/burger.jpg",
+    productPrice: 10,
+    productOffer: 1,
+    productRate: 2.0,
+    productFavourite: 1,
+    productFirstShow: 1,
+    productQuantity: 5,
+  ),
+  ProductModel(
+    productId: 2,
+    productName: "Fish",
+    productDescription: "Food Description and price.",
+    productImage: "images/product/fish.jpg",
+    productPrice: 15,
+    productOffer: 1,
+    productRate: 3.0,
+    productFavourite: 0,
+    productFirstShow: 1,
+    productQuantity: 10,
+  ),
+  ProductModel(
+    productId: 4,
+    productName: "Pizza",
+    productDescription: "Food Description and price.",
+    productImage: "images/product/pizza.jpg",
+    productPrice: 25,
+    productOffer: 0,
+    productRate: 1.0,
+    productFavourite: 0,
+    productFirstShow: 1,
+    productQuantity: 15,
+  ),
+];
+
+var shoppingProduct = [
+
+  ProductModel(
+    productId: 1,
+    productName: "juice",
+    productDescription: "Food Description and price.",
+    productImage: "images/product/fresh_juice.jpg",
+    productPrice: 100,
+    productOffer: 0,
+    productRate: 1.0,
+    productFavourite: 0,
+    productFirstShow: 1,
+    productQuantity: 2,
+  ),
+
+  ProductModel(
+    productId: 2,
+    productName: "Fish",
+    productDescription: "Food Description and price.",
+    productImage: "images/product/fish.jpg",
+    productPrice: 15,
+    productOffer: 1,
+    productRate: 3.0,
+    productFavourite: 0,
+    productFirstShow: 1,
+    productQuantity: 10,
+  ),
+  ProductModel(
+    productId: 4,
+    productName: "Pizza",
+    productDescription: "Food Description and price.",
+    productImage: "images/product/pizza.jpg",
+    productPrice: 25,
+    productOffer: 0,
+    productRate: 1.0,
+    productFavourite: 0,
+    productFirstShow: 1,
+    productQuantity: 15,
+  ),
+  
+];

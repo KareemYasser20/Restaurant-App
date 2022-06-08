@@ -1,29 +1,27 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:restaurant/screens/drawer/drawer_screen.dart';
 import 'package:restaurant/screens/product/product_details.dart';
-import 'package:restaurant/screens/product/sub_category.dart';
+import 'package:restaurant/screens/product/category_products_screen.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/constant.dart';
-import 'package:restaurant/shared/widgets/single_category.dart';
-import 'package:restaurant/shared/widgets/single_product.dart';
+import 'package:restaurant/shared/widgets/products_widget/single_category.dart';
+import 'package:restaurant/shared/widgets/products_widget/single_home_product.dart';
 
-class HomeScreen extends StatefulWidget {
-  static const String id = 'home_screen';
-  const HomeScreen({Key key}) : super(key: key);
+class RestaurantScreen extends StatefulWidget {
+  static const String id = 'restaurant_screen';
+
+  final GlobalKey<ScaffoldState> drawer;
+
+  RestaurantScreen({this.drawer});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<RestaurantScreen> createState() => _RestaurantScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  GlobalKey<ScaffoldState> _keyDrawer = GlobalKey<ScaffoldState>();
+class _RestaurantScreenState extends State<RestaurantScreen> {
+  TextEditingController searchController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _keyDrawer,
-      endDrawer: DrawerScreen(),
-      body: Column(
+    return Column(
         children: <Widget>[
           Container(
             alignment: Alignment.bottomLeft,
@@ -54,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icons.arrow_drop_down,
                   color: primaryColor,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // TODO: Get Current Location here
+                },
               )
             ],
           ),
@@ -70,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(25.0),
                     ),
                     child: TextFormField(
+                      controller: searchController,
+                      autocorrect: true,
                       style: TextStyle(color: Colors.black),
                       cursorColor: primaryColor,
                       decoration: InputDecoration(
@@ -85,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _keyDrawer.currentState.openEndDrawer();
+                    widget.drawer.currentState.openEndDrawer();
                   },
                   child: Icon(
                     Icons.menu,
@@ -108,15 +110,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SubCategory(
-                                  categoryId: categoryList[index]["catId"],
-                                  categoryName: categoryList[index]["catName"],
+                            builder: (context) => CategoryProducts(
+                              categoryName: categoryList[index].categoryName,
+                              subCategoryProducts: categoryList[index].subCategoryProducts,
                                 )));
                   },
                   child: SingleCategory(
-                    catId: categoryList[index]["catId"],
-                    catName: categoryList[index]["catName"],
-                    catImage: categoryList[index]["catImage"],
+                    category: categoryList[index],
                   ),
                 );
               },
@@ -126,62 +126,20 @@ class _HomeScreenState extends State<HomeScreen> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height /1.68 , //520
             child: ListView.builder(
-              itemCount: productList.length,
+              itemCount: homeProductList.length,
               itemBuilder: (context, index) {
-                return SingleProduct(
-                    productId: productList[index]["productId"],
-                    productName: productList[index]["productName"],
-                    productDescription: productList[index]
-                        ["productDescription"],
-                    productImage: productList[index]["productImage"],
+                return SingleHomeProduct(
+                  product: homeProductList[index],
                     onTapFunction: () {
                       Navigator.pushNamed(context, ProductDetails.id,
                           arguments: ProductDetails(
-                            productId: productList[index]["productId"],
-                            productName: productList[index]["productName"],
-                            productDescription: productList[index]
-                                ["productDescription"],
-                            productImage: productList[index]["productImage"],
-                            productPrice: productList[index]["ProductPrice"],
+                            product: homeProductList[index],
                           ));
                     });
               },
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        selectedItemColor: primaryColor,
-        unselectedItemColor: Colors.grey,
-        selectedFontSize: 14.0,
-        unselectedFontSize: 12.0,
-        showSelectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.restaurant_menu,
-              size: 25.0,
-            ),
-            label: "Restaurant",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.local_fire_department,
-              size: 25.0,
-            ),
-            label: "Offers",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              size: 25.0,
-            ),
-            label: "Account",
-          ),
-        ],
-      ),
-    );
+      );  
   }
 }

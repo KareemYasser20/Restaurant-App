@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/product_model.dart';
 
-class SingleProduct extends StatelessWidget {
-  final String productId;
-  final String productName;
-  final String productDescription;
-  final String productImage;
-  final int productPrice;
+class SingleHomeProduct extends StatelessWidget {
+  final ProductModel product;
   final Function onTapFunction;
 
-  SingleProduct(
-      {this.productId,
-      this.productName,
-      this.productDescription,
+  SingleHomeProduct(
+      {
+      this.product,
       this.onTapFunction,
-      this.productPrice,
-      this.productImage});
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +26,7 @@ class SingleProduct extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 image: DecorationImage(
-                  image: AssetImage(productImage),
+                  image: AssetImage(product.productImage),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -40,7 +35,7 @@ class SingleProduct extends StatelessWidget {
               height: 8.0,
             ),
             Text(
-              productName,
+              product.productName,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
@@ -50,7 +45,7 @@ class SingleProduct extends StatelessWidget {
               height: 4.0,
             ),
             Text(
-              productDescription ,
+              product.productDescription ,
               style: TextStyle(
                 color: Colors.grey,
               ),

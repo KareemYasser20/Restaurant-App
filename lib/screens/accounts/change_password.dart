@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
-import 'package:restaurant/shared/widgets/shopping_screen_header.dart';
+import 'package:restaurant/shared/widgets/shopping_widgets/shopping_screen_header.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   static const String id = 'Change_Password_screen';

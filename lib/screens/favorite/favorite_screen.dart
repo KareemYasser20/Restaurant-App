@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/product/product_details.dart';
-import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/constant.dart';
+import 'package:restaurant/shared/widgets/favorite_widgets/fingle_favorite_product.dart';
 
 class FavoriteScreen extends StatefulWidget {
   static const String id = 'Favorite_screen';
@@ -15,7 +15,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         title: Text(
+        title: Text(
           "Favorites",
           style: TextStyle(color: Colors.black),
         ),
@@ -25,124 +25,27 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             Icons.arrow_back_ios,
             color: Colors.black,
           ),
-          onPressed: () {Navigator.pop(context);},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Container(
         child: GridView.builder(
-          itemCount: productList.length,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.8
-                ),
+          itemCount: homeProductList.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, childAspectRatio: 0.8),
           itemBuilder: (context, index) {
             return SingleFavoriteProduct(
-              productId: productList[index]["productId"],
-              productName: productList[index]["productName"],
-              productImage: productList[index]["productImage"],
-              productPrice: productList[index]["ProductPrice"],
-              productDescription: productList[index]["productDescription"],
-              productRate: productList[index]["ProductRate"],
+              productModel: homeProductList[index],
               onTapFunction: () {
                 Navigator.pushNamed(context, ProductDetails.id,
                     arguments: ProductDetails(
-                      productId: productList[index]["productId"],
-                      productName: productList[index]["productName"],
-                      productDescription: productList[index]
-                          ["productDescription"],
-                      productImage: productList[index]["productImage"],
-                      productPrice: productList[index]["ProductPrice"],
-                    ));
+                      product: homeProductList[index],
+                        ));
               },
             );
           },
-        ),
-      ),
-    );
-  }
-}
-
-class SingleFavoriteProduct extends StatelessWidget {
-  final String productId;
-  final String productName;
-  final String productDescription;
-  final String productImage;
-  final int productPrice;
-  final Function onTapFunction;
-  final String productRate;
-
-  SingleFavoriteProduct(
-      {this.productId,
-      this.productName,
-      this.productRate,
-      this.productDescription,
-      this.onTapFunction,
-      this.productPrice,
-      this.productImage});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTapFunction,
-      child: Container(
-        margin: EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                alignment: Alignment.topRight,
-                child: Icon(
-                  Icons.favorite,
-                  color: primaryColor,
-                )),
-            Container(
-              width: MediaQuery.of(context).size.width / 2,
-              height: MediaQuery.of(context).size.width / 2 - 75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: AssetImage(productImage),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 8.0,
-            ),
-            Expanded(
-              child: Text(
-                productName,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 4.0,
-            ),
-            Row(
-              children: [
-                Text(
-                  "${productPrice.toString()} \$",
-                ),
-                Expanded(
-                  child: Text(""),
-                ),
-                Text(productRate),
-                Icon(
-                  Icons.star_border,
-                  color: Colors.yellow,
-                )
-              ],
-            ),
-          ],
         ),
       ),
     );

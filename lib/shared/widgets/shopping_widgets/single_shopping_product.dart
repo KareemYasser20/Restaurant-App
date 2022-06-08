@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../colors.dart';
+import 'package:restaurant/models/product_model.dart';
+import '../../colors.dart';
 
 class SingleShoppingProduct extends StatelessWidget {
-  final String productId;
-  final String productName;
-  final int productPrice;
-  final String productQuantity;
-  final String productImage;
+  final ProductModel product;
 
   SingleShoppingProduct(
-      {this.productId,
-      this.productName,
-      this.productPrice,
-      this.productQuantity,
-      this.productImage});
+      {this.product});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -30,21 +23,21 @@ class SingleShoppingProduct extends StatelessWidget {
           Container(
             child: ListTile(
               title: Text(
-                productName,
+                product.productName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
               ),
               subtitle: Text(
-                productPrice.toString(),
+                product.productPrice.toString(),
                 style: TextStyle(),
               ),
               leading: Container(
                 width: 50.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(productImage),
+                    image: AssetImage(product.productImage),
                     fit: BoxFit.cover,
                   ),
                   shape: BoxShape.circle,
@@ -70,7 +63,7 @@ class SingleShoppingProduct extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        productQuantity,
+                        product.productQuantity.toString(),
                         style: TextStyle(
                           fontSize: 20.0,
                         ),

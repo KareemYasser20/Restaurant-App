@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/product_model.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:restaurant/shared/widgets/details_screen_image.dart';
-import 'package:restaurant/shared/widgets/details_screen_header.dart';
+import 'package:restaurant/shared/widgets/products_widget/details_screen_image.dart';
+import 'package:restaurant/shared/widgets/products_widget/details_screen_header.dart';
 
 class ProductDetails extends StatefulWidget {
   static const String id = 'productDetails_screen';
-  final String productId;
-  final String productName;
-  final String productDescription;
-  final String productImage;
-  final int productPrice;
+  final ProductModel product;
 
   ProductDetails(
-      {this.productId,
-      this.productName,
-      this.productDescription,
-      this.productImage,
-      this.productPrice});
+      {this.product});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -34,7 +27,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           ListView(
             children: [
               DetailsImageWidget(
-                image: args.productImage,
+                image: args.product.productImage,
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -42,7 +35,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      args.productName,
+                      args.product.productName,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25.0,
@@ -53,7 +46,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       height: 10.0,
                     ),
                     Text(
-                      args.productDescription,
+                      args.product.productDescription,
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 18.0,
@@ -92,7 +85,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         child: Row(
           children: [
             Text(
-              "${args.productPrice}\$",
+              "${args.product.productPrice.toString()}\$",
               style: TextStyle(
                 fontSize: 30.0,
                 color: Colors.white,

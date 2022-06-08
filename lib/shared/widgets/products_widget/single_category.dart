@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/models/category_model.dart';
 
 
 class SingleCategory extends StatelessWidget {
-  final String catId;
-  final String catName;
-  final String catImage;
+  final CategoryModel category;
 
-  SingleCategory({this.catId, this.catName, this.catImage});
+  SingleCategory({this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +19,10 @@ class SingleCategory extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
                 color: Colors.red.shade100),
-            child: Image.asset(catImage),
+            child: Image.asset(category.categoryImage),
           ),
           Text(
-            catName,
+            category.categoryName,
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),

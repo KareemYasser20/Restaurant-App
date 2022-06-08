@@ -1,112 +1,126 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/screens/home/home_layout.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
-import 'package:restaurant/shared/widgets/shopping_screen_header.dart';
+import 'package:restaurant/shared/widgets/shopping_widgets/shopping_screen_header.dart';
 
-class MyProfileScreen extends StatefulWidget {
-  static const String id = 'MyProfile_screen';
+class MyAccountScreen extends StatefulWidget {
+  static const String id = 'MyAccount_screen';
 
   @override
-  State<MyProfileScreen> createState() => _MyProfileScreenState();
+  State<MyAccountScreen> createState() => _MyAccountScreenState();
 }
 
-class _MyProfileScreenState extends State<MyProfileScreen> {
-  TextEditingController nameController;
-  TextEditingController emailController;
-  TextEditingController passwordController;
-  TextEditingController phoneController;
+class _MyAccountScreenState extends State<MyAccountScreen> {
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
+  TextEditingController addressController = new TextEditingController();
   bool showPassword = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      body: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 60.0),
-            padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 25.0),
-            child: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: ListView(
-                children: [
-                  Text(
-                    "Edit Profile",
-                    style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  Center(
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 130.0,
-                          height: 130.0,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 4.0,
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  spreadRadius: 2.0,
-                                  blurRadius: 10.0,
-                                  color: Colors.black.withOpacity(0.1),
-                                  offset: Offset(0, 10),
-                                )
-                              ],
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("images/product/burger.jpg"),
-                              )),
+        return Scaffold(
+          backgroundColor: Colors.grey.shade50,
+          body: Stack(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 60.0),
+                padding: EdgeInsets.only(left: 16.0, right: 16.0, top: 25.0),
+                child: GestureDetector(
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: ListView(
+                    children: [
+                      Text(
+                        "My Profile",
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.w500,
                         ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: GestureDetector(
-                            onTap: () {
-                              print("edit test");
-                            },
-                            child: Container(
-                              height: 40.0,
-                              width: 40.0,
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Center(
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 130.0,
+                              height: 130.0,
                               decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: primaryColor,
-                                border: Border.all(
-                                  width: 4.0,
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                                  border: Border.all(
+                                    width: 4.0,
+                                    color:
+                                        Theme.of(context).scaffoldBackgroundColor,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      spreadRadius: 2.0,
+                                      blurRadius: 10.0,
+                                      color: Colors.black.withOpacity(0.1),
+                                      offset: Offset(0, 10),
+                                    )
+                                  ],
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage("images/product/burger.jpg"),
+                                  )),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: GestureDetector(
+                                onTap: () {
+                                  print("edit test");
+                                },
+                                child: Container(
+                                  height: 40.0,
+                                  width: 40.0,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: primaryColor,
+                                    border: Border.all(
+                                      width: 4.0,
+                                      color:
+                                          Theme.of(context).scaffoldBackgroundColor,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.edit,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                              child: Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 35.0,
-                  ),
-                  DefaultFormField(
-                    controller: nameController,
-                    hintText: 'User Name',
+                      ),
+                      SizedBox(
+                        height: 35.0,
+                      ),
+                      DefaultFormField(
+                        controller: nameController,
+                        hintText: 'User Name',
+                        isPasswordTextField: false,
+                        inputType: TextInputType.text,
+                        validatorFunction: (String value) {
+                          if (value.isEmpty) {
+                            return 'Please enter the user name';
+                          }
+                          return null;
+                        },
+                      ),
+                      DefaultFormField(
+                        controller: addressController,
+                    hintText: 'User Address',
                     isPasswordTextField: false,
                     inputType: TextInputType.text,
                     validatorFunction: (String value) {
                       if (value.isEmpty) {
-                        return 'Please enter the user name';
+                        return 'Please enter the user address';
                       }
                       return null;
                     },
@@ -164,7 +178,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     children: [
                       MaterialButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, HomeLayout.id);
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 50.0),
