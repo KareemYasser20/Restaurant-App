@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/product/product_details.dart';
 import 'package:restaurant/shared/constant.dart';
-import 'package:restaurant/shared/widgets/favorite_widgets/fingle_favorite_product.dart';
+import 'package:restaurant/shared/widgets/favorite_widgets/single_favorite_product.dart';
 
 class FavoriteScreen extends StatefulWidget {
   static const String id = 'Favorite_screen';

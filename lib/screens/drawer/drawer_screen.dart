@@ -5,7 +5,7 @@ import 'package:restaurant/screens/favorite/favorite_screen.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:restaurant/shared/widgets/drawer_widets/drawer_item_widget.dart';
+import 'package:restaurant/shared/widgets/drawer_widgets/drawer_item_widget.dart';
 
 class DrawerScreen extends StatefulWidget {
   static const String id = 'drawer_screen';
