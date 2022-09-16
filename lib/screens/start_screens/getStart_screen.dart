@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/start_screens/tips_screen.dart';
 import 'package:restaurant/shared/colors.dart';

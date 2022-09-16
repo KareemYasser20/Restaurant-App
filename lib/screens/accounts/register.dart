@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
@@ -237,14 +236,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(Icons.camera),
                 onPressed: () {
                   takePhoto(ImageSource.camera);
                 },
                 label: Text('Camera'),
               ),
-              FlatButton.icon(
+              TextButton.icon(
                 icon: Icon(Icons.image),
                 onPressed: () {
                   takePhoto(ImageSource.gallery);
