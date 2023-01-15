@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant/models/product_model.dart';
+import 'package:restaurant/provider/cart.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/products_widget/details_screen_image.dart';
@@ -20,6 +22,8 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context).settings.arguments as ProductDetails;
+    var myProvid = Provider.of<Cart>(context);
+    
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -27,7 +31,9 @@ class _ProductDetailsState extends State<ProductDetails> {
           ListView(
             children: [
               DetailsImageWidget(
-                image: args.product.productImage,
+                prod: args.product,
+                myProvide: myProvid,
+
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -62,7 +68,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             right: 0.0,
             left: 0.0,
             height: 135.0,
-            child: DetailsHeader(),
+            child: DetailsHeader(prov: myProvid,),
           ),
         ],
       ),

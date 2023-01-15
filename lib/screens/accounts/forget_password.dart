@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/login.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
 import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
-import 'package:restaurant/shared/widgets/toast_widget/toast_widget.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   static const String id = 'ForgetPassword_screen';
@@ -16,7 +14,7 @@ class ForgetPasswordScreen extends StatefulWidget {
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   TextEditingController emailController = new TextEditingController();
   final _globalKey = GlobalKey<FormState>();
-  FToast fToast = FToast();
+  // FToast fToast = FToast();
 
   @override
   Widget build(BuildContext context) {
@@ -89,15 +87,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     AccountsButton(
                       buttonText: 'Send',
                       onPressButton: () {
-                        fToast.init(context);
+                        // fToast.init(context);
                         if (_globalKey.currentState.validate()) {
                           print('user email to reset --->');
                           print('user email : ${emailController.text}');
-                          fToast.showToast(
-                            child: toastWidget(message :"check your email to change the password" , toastIcon: Icons.info_outline_rounded ,),
-                            gravity: ToastGravity.BOTTOM,
-                            toastDuration: Duration(seconds: 4),
-                          );
+                          // fToast.showToast(
+                          //   child: toastWidget(message :"check your email to change the password" , toastIcon: Icons.info_outline_rounded ,),
+                          //   gravity: ToastGravity.BOTTOM,
+                          //   toastDuration: Duration(seconds: 4),
+                          // );
                           Navigator.pushNamed(context, LoginScreen.id);
                         }
                       },

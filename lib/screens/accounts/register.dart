@@ -1,11 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:restaurant/screens/accounts/login.dart';
+import 'package:restaurant/screens/home/home_layout.dart';
+import 'package:restaurant/shared/api/function.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_buttons.dart';
 import 'package:restaurant/shared/widgets/account_widgets/account_question.dart';
 import 'package:restaurant/shared/widgets/account_widgets/default_form_field.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:toast/toast.dart';
+import '../../shared/api/config.dart';
+import '../../shared/components/progress.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String id = 'register_screen';
@@ -21,18 +26,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController  = new TextEditingController();
   TextEditingController phoneController  = new TextEditingController();
   bool showPassword = true;
-  PickedFile _imageFile; // this variable will store image will be select from camera or gallery
+  File _imageFile; // this variable will store image will be select from camera or gallery
   final ImagePicker _picker = ImagePicker();
   final _globalKey = GlobalKey<FormState>(); 
+  bool isLoading = false;
+
+  
 
   void takePhoto(ImageSource source) async {
     final pickedFile = await _picker.getImage(
       source: source,
     );
     setState(() {
-      _imageFile = pickedFile;
+      _imageFile = File(pickedFile.path);
+      // pickedFile;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -172,10 +182,53 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     
 
-                    AccountsButton(
+                    isLoading
+                            ? circularProgress()
+                            : AccountsButton(
                       buttonText: 'Sign  Up',
-                       onPressButton: () {
-                          if(_globalKey.currentState.validate()){
+                       onPressButton: () async {
+                          Map userData =
+                                {
+                                    "customer_name" : nameController.text,
+                                    "customer_email" : emailController.text,
+                                    "customer_address" : addressController.text,
+                                    "customer_password" : passwordController.text,
+                                    "customer_phone" : phoneController.text,
+                                };
+                          if (!await checkConnection()) {
+                              
+                                        Toast.show(
+                                        "Please check your internet connection.",
+                                       // context,
+                                        duration: Toast.lengthLong,
+                                        gravity: Toast.bottom);
+                                  } else if(_globalKey.currentState.validate()){
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+                                    // await uploadFile(_imageFile);
+                                     bool res = await uploadFileWithData(
+                                      imageFile: _imageFile,
+                                      arrInsert: userData,
+                                      urlPage: "customers/insert_customer.php?",
+                                      context: context,
+                                      movePage: () => HomeLayout(),
+                                      type:  "insert",
+                                     );
+                                     
+                                     
+                                    //  createCustomer(
+                                    //   nameController.text,
+                                    //   _imageFile.path.toString(),
+                                    //   emailController.text,
+                                    //   addressController.text,
+                                    //   passwordController.text,
+                                    //   phoneController.text,
+                                    //     context);
+                                        setState(() {
+                                          isLoading = res;
+                                        });
+                                      
                             print('User Data ------------->');
                             print('User image is: ${_imageFile.path.toString()}');
                             print('User Name is: ${nameController.text}');
@@ -264,7 +317,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         children: [
           CircleAvatar(
             radius: 70.0,
-            backgroundImage: _imageFile ==null ? AssetImage("images/product/burger.jpg"): FileImage(File(_imageFile.path)),
+            backgroundImage: _imageFile ==null ? AssetImage("images/register_icon.png"): FileImage(File(_imageFile.path)),
           ),
           Positioned(
             bottom: 0.0,

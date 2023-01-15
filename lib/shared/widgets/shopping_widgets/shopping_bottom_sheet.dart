@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/provider/cart.dart';
 import 'package:restaurant/screens/home/home_layout.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
+import 'package:restaurant/shared/api/function.dart';
 import 'package:restaurant/shared/colors.dart';
 
-void showSheetMessage(BuildContext context) {
+saveCart( BuildContext context , Cart provider) async
+    {
+      Map arr = {
+        "data" : provider.getStringCart(),
+        /// TODO get current user id here
+        "order_customer_id" : "",
+        "order_customer_address" : "", 
+        "order_note" : "",
+      };
+
+      await saveData(
+        arrInsert: arr,
+        context: context,
+        type: "insert",
+        urlPage: "orders/insert_order.php",
+        movePage: ()=> TrackingOrder(),
+      ); 
+      provider.clearCart();
+
+    }
+    
+
+void showSheetMessage(BuildContext context , provid) {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -70,6 +94,7 @@ void showSheetMessage(BuildContext context) {
                         ),
                       ),
                       onPressed: () {
+                        saveCart(context , provid);
                         Navigator.pushNamed(context, TrackingOrder.id);
                       },
                     ),

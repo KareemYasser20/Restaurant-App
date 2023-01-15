@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant/models/product_model.dart';
+import 'package:restaurant/provider/cart.dart';
 import 'package:restaurant/shared/colors.dart';
-import 'package:restaurant/shared/constant.dart';
 import 'package:restaurant/shared/widgets/shopping_widgets/shopping_screen_header.dart';
 import 'package:restaurant/shared/widgets/shopping_widgets/shopping_bottom_sheet.dart';
 import 'package:restaurant/shared/widgets/shopping_widgets/single_shopping_product.dart';
@@ -21,6 +22,11 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
  
   @override
   Widget build(BuildContext context) {
+    var myProvid = Provider.of<Cart>(context);
+    // myProvid.items.clear();
+
+    
+
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       body: Stack(
@@ -28,10 +34,10 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           Container(
             margin: EdgeInsets.only(top: 60.0),
             child: ListView.builder(
-              itemCount: shoppingProduct.length,
+              itemCount: myProvid.listItems().length,
               itemBuilder: (context, index) {
                 return SingleShoppingProduct(
-                  product: shoppingProduct[index],
+                  item: myProvid.listItems()[index],
                 );
               },
             ),
@@ -61,7 +67,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         Expanded(
                           child: Text(""),
                         ),
-                        Text("200 \$"),
+                        Text("${myProvid.totalItems().toString()} EGP"),
                       ],
                     ),
                     Divider(
@@ -73,7 +79,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         Expanded(
                           child: Text(""),
                         ),
-                        Text("200 \$"),
+                        Text("0 EGP"),
                       ],
                     ),
                     Divider(
@@ -85,7 +91,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                         Expanded(
                           child: Text(""),
                         ),
-                        Text("200 \$"),
+                        Text("${myProvid.totalItems().toString()} EGP"),
                       ],
                     ),
                   ],
@@ -111,7 +117,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   ),
                 ),
                 onTap: () {
-                  showSheetMessage(context);
+                  showSheetMessage(context , myProvid);
                 },
               ),
             ),

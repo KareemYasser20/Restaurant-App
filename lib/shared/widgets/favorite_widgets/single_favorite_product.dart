@@ -65,7 +65,7 @@ class SingleFavoriteProduct extends StatelessWidget {
                 Expanded(
                   child: Text(""),
                 ),
-                Text(productModel.productRate.toString()),
+                Text(productModel.productOffer.toString()),
                 Icon(
                   Icons.star_border,
                   color: Colors.yellow,

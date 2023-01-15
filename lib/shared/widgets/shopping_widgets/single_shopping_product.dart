@@ -1,15 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:restaurant/models/product_model.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/models/cartItem_model.dart';
+import 'package:restaurant/provider/cart.dart';
+import 'package:restaurant/shared/api/config.dart';
 import '../../colors.dart';
 
 class SingleShoppingProduct extends StatelessWidget {
-  final ProductModel product;
+  final Item item;
 
   SingleShoppingProduct(
-      {this.product});
+      {this.item});
   @override
   Widget build(BuildContext context) {
+    var provid = Provider.of<Cart>(context);
+    final String imageShoppingProduct = imagesPath + "products/";
     return Card(
       child: Column(
         children: [
@@ -23,31 +29,44 @@ class SingleShoppingProduct extends StatelessWidget {
           Container(
             child: ListTile(
               title: Text(
-                product.productName,
+                item.itemName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
               ),
               subtitle: Text(
-                product.productPrice.toString(),
+                item.itemPrice.toString(),
                 style: TextStyle(),
               ),
               leading: Container(
                 width: 50.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(product.productImage),
-                    fit: BoxFit.cover,
+                child: CachedNetworkImage(
+                  imageUrl: imageShoppingProduct + item.itemImage,
+                  fit: BoxFit.cover,
+                  imageBuilder: (context , imageProvider)=>Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider , fit: BoxFit.cover
+                      )
+                    ),
                   ),
+                  // BoxShape: BoxShape.circle,
+                ),
+                decoration: BoxDecoration(
+                  
                   shape: BoxShape.circle,
                 ),
               ),
               trailing: Container(
-                width: 70.0,
+                width: 90.0,
                 child: Row(
                   children: [
                     GestureDetector(
+                      onTap: () {
+                        provid.addCart(item);
+                      },
                       child: Container(
                         padding: EdgeInsets.all(5.0),
                         child: FaIcon(
@@ -63,7 +82,7 @@ class SingleShoppingProduct extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        product.productQuantity.toString(),
+                        provid.getCountByItem(item).toString(),
                         style: TextStyle(
                           fontSize: 20.0,
                         ),
@@ -71,6 +90,9 @@ class SingleShoppingProduct extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        provid.removeCart(item);
+                      },
                       child: Container(
                         padding: EdgeInsets.all(5.0),
                         child: FaIcon(

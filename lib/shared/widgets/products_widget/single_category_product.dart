@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/models/product_model.dart';
+import 'package:restaurant/shared/api/config.dart';
 import '../../colors.dart';
 
 class SingleCategoryProduct extends StatelessWidget {
@@ -33,10 +35,14 @@ class SingleCategoryProduct extends StatelessWidget {
               width: 100.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(product.productImage),
-                ),
+              ),
+              child:  CachedNetworkImage(
+                imageUrl: imageProduct + product.productImage,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                fit: BoxFit.cover,
+                height: 350.0,
+                width: MediaQuery.of(context).size.width,
               ),
             ),
             Expanded(

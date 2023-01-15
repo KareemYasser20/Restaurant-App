@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/provider/cart.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import '../../colors.dart';
 
 class DetailsHeader extends StatelessWidget {
+  final Cart prov;
+
+  DetailsHeader({this.prov});
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,14 +53,37 @@ class DetailsHeader extends StatelessWidget {
               ],
               borderRadius: BorderRadius.circular(15.0),
             ),
-            child: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-                color: primaryColor,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, ShoppingScreen.id);
-              },
+            child: Stack(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: primaryColor,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, ShoppingScreen.id);
+                  },
+                ),
+
+
+                Container(
+                  width: 18.0,
+                  height: 18.0,
+                  alignment: Alignment.center,
+
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Text(
+                    prov.getCountItems().toString() ,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                     ),
+                )
+              ],
             ),
           ),
         ],

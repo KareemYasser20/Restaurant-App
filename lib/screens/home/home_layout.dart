@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/provider/load_data.dart';
 import 'package:restaurant/screens/home/my_account.dart';
 import 'package:restaurant/screens/drawer/drawer_screen.dart';
 import 'package:restaurant/screens/home/offers_screen.dart';
 import 'package:restaurant/screens/home/restaurant_screen.dart';
 import 'package:restaurant/shared/colors.dart';
+
+
+
+final loadedData = LoadData(); 
 
 class HomeLayout extends StatefulWidget {
   static const String id = 'home_layout';
@@ -17,14 +23,30 @@ class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   GlobalKey<ScaffoldState> keyDrawer ;
   List<Widget> homeScreens ;
+  
+ void getCat(BuildContext context) {
+    Provider.of<LoadData>(context, listen: false).getCategoryData();
+  }
+
+  void getProd(BuildContext context) {
+    Provider.of<LoadData>(context, listen: false).getProductData("");
+  }
+
+  // void getCatProduct(BuildContext context) {
+  //   Provider.of<LoadData>(context, listen: false).getCategoryProduct();
+  // }
 
 @override
   void initState() {
     super.initState();
+    getCat(context);
+    getProd(context);
+    // getCatProduct(context);
+
     keyDrawer = GlobalKey<ScaffoldState>();
     homeScreens = [
-    RestaurantScreen(drawer: keyDrawer,),
-    OfferScreen(),
+    RestaurantScreen(drawer: keyDrawer),
+    OfferScreen(), 
     MyAccountScreen(), ];
   }
 

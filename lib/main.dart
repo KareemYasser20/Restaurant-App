@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/provider/cart.dart';
+import 'package:restaurant/provider/load_data.dart';
 import 'package:restaurant/screens/accounts/change_password.dart';
 import 'package:restaurant/screens/accounts/forget_password.dart';
 import 'package:restaurant/screens/accounts/login.dart';
@@ -14,13 +17,30 @@ import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
 import 'package:restaurant/screens/start_screens/splash_screen.dart';
 import 'package:restaurant/screens/start_screens/tips_screen.dart';
+import 'package:restaurant/screens/statistics/statistics.dart';
 
 
 void main() {
-  runApp(MyApp());
-}
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => LoadData()
+          ),
 
+          ChangeNotifierProvider<Cart>(
+          create: (context) => Cart()
+          ),
+     
+      ],
+      child: MyApp(),
+    )
+    
+    );
+}
 class MyApp extends StatelessWidget {
+
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,6 +62,7 @@ class MyApp extends StatelessWidget {
         ChangePasswordScreen.id : (context) => ChangePasswordScreen(),
         FavoriteScreen.id : (context) => FavoriteScreen(),
         TrackingOrder.id : (context) => TrackingOrder(),
+        Statistics.id : (context) => Statistics(),
                 
       },
     );

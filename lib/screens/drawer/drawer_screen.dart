@@ -4,6 +4,7 @@ import 'package:restaurant/screens/home/my_account.dart';
 import 'package:restaurant/screens/favorite/favorite_screen.dart';
 import 'package:restaurant/screens/orders/tracking_order.dart';
 import 'package:restaurant/screens/shopping/shopping.dart';
+import 'package:restaurant/screens/statistics/statistics.dart';
 import 'package:restaurant/shared/colors.dart';
 import 'package:restaurant/shared/widgets/drawer_widgets/drawer_item_widget.dart';
 
@@ -91,6 +92,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
               drawerIcon: Icons.shopping_bag_outlined,
               onTapFunction: () {
                 Navigator.pushNamed(context, ShoppingScreen.id);
+              },
+            ),
+
+            DrawerItem(
+              titleText: "statistics",
+              drawerIcon: Icons.data_exploration,
+              onTapFunction: () {
+                Navigator.pushNamed(context, Statistics.id);
               },
             ),
             DrawerItem(

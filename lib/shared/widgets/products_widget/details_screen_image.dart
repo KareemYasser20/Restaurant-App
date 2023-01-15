@@ -1,19 +1,57 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant/models/cartItem_model.dart';
+import 'package:restaurant/models/product_model.dart';
+import 'package:restaurant/provider/cart.dart';
+import 'package:restaurant/shared/api/config.dart';
 import '../../colors.dart';
 
 class DetailsImageWidget extends StatefulWidget {
-  final String image;
-  DetailsImageWidget({@required this.image});
+  final ProductModel prod;
+  final Cart myProvide;
+  DetailsImageWidget({@required this.prod , this.myProvide});
 
   @override
   _DetailsImageWidgetState createState() => _DetailsImageWidgetState();
 }
 
 class _DetailsImageWidgetState extends State<DetailsImageWidget> {
-  int counter = 0;
+  int _qty = 0;
+  Item item;
+
+  
+
+  _minusQTY(Cart myProv){
+    if(_qty != 0 ){
+    _qty = _qty -1;
+    myProv.removeCart(item);
+    }
+  }
+
+  _plusQTY(Cart myProv){
+    _qty = _qty + 1;
+    myProv.addCart(item);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    item = Item(
+      itemId: widget.prod.productId,
+      itemName: widget.prod.productName,
+      itemImage: widget.prod.productImage,
+      itemPrice: widget.prod.productPrice,
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    var myProvider = Provider.of<Cart>(context);
+    _qty = myProvider.getCountByItem(item);
     return Container(
       padding: EdgeInsets.only(bottom: 10.0, top: 0.0),
       decoration: BoxDecoration(
@@ -31,12 +69,15 @@ class _DetailsImageWidgetState extends State<DetailsImageWidget> {
       ),
       child: Column(
         children: [
-          Image.asset(
-            widget.image,
-            height: 350.0,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.fill,
-          ),
+          CachedNetworkImage(
+                imageUrl: imageProduct + widget.prod.productImage,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                fit: BoxFit.fill,
+                height: 350.0,
+                width: MediaQuery.of(context).size.width,
+              ),
+
           Padding(
             padding: EdgeInsets.only(top: 25.0),
           ),
@@ -62,16 +103,14 @@ class _DetailsImageWidgetState extends State<DetailsImageWidget> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    setState(() {
-                      counter--;
-                    });
+                  _minusQTY(myProvider);
                   },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  counter.toString(),
+                  _qty.toString(),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25.0,
@@ -97,9 +136,7 @@ class _DetailsImageWidgetState extends State<DetailsImageWidget> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    setState(() {
-                      counter++;
-                    });
+                    _plusQTY(myProvider);
                   },
                 ),
               ),

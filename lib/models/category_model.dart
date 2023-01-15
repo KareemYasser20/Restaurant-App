@@ -1,24 +1,23 @@
-import 'package:restaurant/models/product_model.dart';
 
 class CategoryModel {
-  int categoryId;
+  String categoryId;
   String categoryName;
   String categoryImage;
-  List<ProductModel> subCategoryProducts;
+  // List<ProductModel> subCategoryProducts;
 
   CategoryModel({
     this.categoryId,
     this.categoryName,
     this.categoryImage,
-    this.subCategoryProducts,
+    // this.subCategoryProducts,
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
-      categoryId: json[''],
-      categoryName: json[''],
-      categoryImage: json[''],
-      subCategoryProducts: json[''],
+      categoryId: json['cat_id'],
+      categoryName: json['cat_name'],
+      categoryImage: json['cat_image'],
+      // subCategoryProducts: json[''],
     );
   }
 }
